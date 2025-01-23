@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     }
     public void OnFire()
     {
-        print(modsHandler.TestMod.ModName);
         modsHandler.FireWeapon();
     }
 }

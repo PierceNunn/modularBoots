@@ -20,6 +20,10 @@ public class PlayerModsHandler : MonoBehaviour
             {
                 ProjectileMod testFireMod = _modLayout[i] as ProjectileMod;
                 Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, Quaternion.identity);
+                for(int j = 0; j < statModifierQueue.Count; j++)
+                {
+                    print(statModifierQueue.Dequeue());
+                }
             }
             else if (_modLayout[i].GetType() == typeof(StatMod))
             {

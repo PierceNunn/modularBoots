@@ -17,4 +17,10 @@ public class Enums : MonoBehaviour
         multiply,
         divide
     }
+
+    public enum modifiableStats
+    {
+        speed,
+        damage
+    }
 }

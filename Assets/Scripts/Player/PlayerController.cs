@@ -5,8 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private PlayerModsHandler modsHandler;
+
+    public void Start()
+    {
+        modsHandler = gameObject.GetComponent<PlayerModsHandler>();
+    }
     public void OnFire()
     {
-        print("test");
+        print(modsHandler.TestMod.ModName);
     }
 }

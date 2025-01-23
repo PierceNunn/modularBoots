@@ -8,9 +8,9 @@ public class ProjectileController : MonoBehaviour
     [SerializeField] private float _projectileDamage;
     [SerializeField] private float _projectileSpeed;
 
-    public void Update()
+    public void Start()
     {
-        gameObject.GetComponent<Rigidbody>().velocity = (Vector3.forward * _projectileSpeed * 10000);
-        print("ahhh!");
+        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * _projectileSpeed);
+        print(gameObject.GetComponent<Rigidbody>().velocity);
     }
 }

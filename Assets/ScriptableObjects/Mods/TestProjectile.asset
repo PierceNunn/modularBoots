@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modName: TestProjectileMod
   modDescription: test
-  projectiles: []
+  projectiles:
+  - {fileID: 4980546015630699382, guid: fc1b3ec901ccd314195050cd5826e0b2, type: 3}

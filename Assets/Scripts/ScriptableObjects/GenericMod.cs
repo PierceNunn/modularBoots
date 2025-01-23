@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract class GenericMod : MonoBehaviour
+abstract public class GenericMod : MonoBehaviour
 {
     private string modName;
     private string modDescription;

@@ -16,5 +16,5 @@ MonoBehaviour:
   modDescription: 
   _statModifiers:
   - _statToModify: 0
-    _operator: 0
-    _modifierValue: 1
+    _operator: 2
+    _modifierValue: 2

@@ -26,7 +26,7 @@ public class ProjectileController : MonoBehaviour
 
     public void ApplyModifier(BasicStatModifier mod)
     {
-        modifierDelegate modDeg;
+        modifierDelegate modDeg = null;
 
         switch(mod.Operator)
         {
@@ -41,6 +41,19 @@ public class ProjectileController : MonoBehaviour
                 break;
             case Enums.operators.divide:
                 modDeg = Divide;
+                break;
+            default:
+                Debug.LogError("modifier operator is invalid!");
+                break;
+        }
+
+        switch(mod.StatToModify)
+        {
+            case Enums.modifiableStats.speed:
+                _projectileSpeed = modDeg(_projectileSpeed, mod.ModifierValue);
+                break;
+            case Enums.modifiableStats.damage:
+                _projectileDamage = modDeg(_projectileDamage, mod.ModifierValue);
                 break;
         }
     }

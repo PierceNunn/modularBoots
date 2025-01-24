@@ -9,4 +9,18 @@ public class Enums : MonoBehaviour
         straight,
         curved
     }
+
+    public enum operators
+    {
+        add,
+        subtract,
+        multiply,
+        divide
+    }
+
+    public enum modifiableStats
+    {
+        speed,
+        damage
+    }
 }

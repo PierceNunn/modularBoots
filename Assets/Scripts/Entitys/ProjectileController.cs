@@ -8,6 +8,8 @@ public class ProjectileController : MonoBehaviour
     [SerializeField] private float _projectileDamage;
     [SerializeField] private float _projectileSpeed;
 
+    delegate float modifierDelegate(float modifiedVar, float modValue);
+
     public void Start()
     {
         gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * _projectileSpeed);
@@ -24,11 +26,56 @@ public class ProjectileController : MonoBehaviour
 
     public void ApplyModifier(BasicStatModifier mod)
     {
-        //to do
-        /*switch(mod.StatToModify)
+        modifierDelegate modDeg = null;
+
+        switch(mod.Operator)
         {
-            case (Enums.modifiableStats.damage)  
-        }*/
+            case Enums.operators.add:
+                modDeg = Add;
+                break;
+            case Enums.operators.subtract:
+                modDeg = Subtract;
+                break;
+            case Enums.operators.multiply:
+                modDeg = Multiply;
+                break;
+            case Enums.operators.divide:
+                modDeg = Divide;
+                break;
+            default:
+                Debug.LogError("modifier operator is invalid!");
+                break;
+        }
+
+        switch(mod.StatToModify)
+        {
+            case Enums.modifiableStats.speed:
+                _projectileSpeed = modDeg(_projectileSpeed, mod.ModifierValue);
+                break;
+            case Enums.modifiableStats.damage:
+                _projectileDamage = modDeg(_projectileDamage, mod.ModifierValue);
+                break;
+        }
     }
-    
+
+    public float Add(float fOne, float fTwo)
+    {
+        return fOne + fTwo;
+    }
+
+    public float Subtract(float fOne, float fTwo)
+    {
+        return fOne - fTwo;
+    }
+
+    public float Multiply(float fOne, float fTwo)
+    {
+        return fOne * fTwo;
+    }
+
+    public float Divide(float fOne, float fTwo)
+    {
+        return fOne / fTwo;
+    }
+
 }

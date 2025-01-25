@@ -60,4 +60,12 @@ public class PlayerModsHandler : MonoBehaviour
         print("failed to add mod");
         return false;
     }
+
+    public void ClearMods()
+    {
+        for (int i = 0; i < _modLayout.Length; i++)
+        {
+            _modLayout[i] = null;
+        }
+    }
 }

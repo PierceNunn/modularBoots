@@ -18,6 +18,7 @@ public class GunModManagerUI : MonoBehaviour
     {
         modsHandler = FindObjectOfType<PlayerModsHandler>();
         UpdateModDisplay();
+        _content.SetActive(false);
     }
 
     public void ToggleModMenu()
@@ -77,6 +78,12 @@ public class GunModManagerUI : MonoBehaviour
     public void AddMod(int arrayPos)
     {
         modsHandler.AddModToLoadout(_availableMods[arrayPos]);
+        UpdateModDisplay();
+    }
+
+    public void ClearMods()
+    {
+        modsHandler.ClearMods();
         UpdateModDisplay();
     }
 }

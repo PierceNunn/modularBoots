@@ -16,6 +16,9 @@ public class PlayerModsHandler : MonoBehaviour
 
         for (int i = 0; i < _modLayout.Length; i++)
         {
+            if (_modLayout[i] == null)
+                continue;
+
             if (_modLayout[i].GetType() == typeof(ProjectileMod))
             {
                 ProjectileMod testFireMod = _modLayout[i] as ProjectileMod;
@@ -24,10 +27,12 @@ public class PlayerModsHandler : MonoBehaviour
                 proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
                 proj.GetComponent<ProjectileController>().ApplyModifiers(statModifierQueue);
                 proj.GetComponent<ProjectileController>().Fire();
+
                 for (int j = 0; j < statModifierQueue.Count; j++)
                 {
                     print(statModifierQueue.Dequeue());
                 }
+                statModifierQueue = new Queue<BasicStatModifier>();
             }
             else if (_modLayout[i].GetType() == typeof(StatMod))
             {
@@ -39,5 +44,28 @@ public class PlayerModsHandler : MonoBehaviour
             }
         }
         
+    }
+
+    public bool AddModToLoadout(GenericMod mod)
+    {
+        for(int i = 0; i < _modLayout.Length; i++)
+        {
+            if(_modLayout[i] == null)
+            {
+                _modLayout[i] = mod;
+                print("added mod in position" + i);
+                return true;
+            }
+        }
+        print("failed to add mod");
+        return false;
+    }
+
+    public void ClearMods()
+    {
+        for (int i = 0; i < _modLayout.Length; i++)
+        {
+            _modLayout[i] = null;
+        }
     }
 }

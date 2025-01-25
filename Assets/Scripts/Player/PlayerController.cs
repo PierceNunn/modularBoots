@@ -41,4 +41,9 @@ public class PlayerController : MonoBehaviour
     {
         modsHandler.FireWeapon();
     }
+
+    public void OnMenu()
+    {
+        FindObjectOfType<GunModManagerUI>().ToggleModMenu();
+    }
 }

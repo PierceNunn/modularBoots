@@ -40,4 +40,17 @@ public class PlayerModsHandler : MonoBehaviour
         }
         
     }
+
+    public bool AddModToLoadout(GenericMod mod)
+    {
+        for(int i = 0; i < _modLayout.Length; i++)
+        {
+            if(_modLayout[i] == null)
+            {
+                _modLayout[i] = mod;
+                return true;
+            }
+        }
+        return false;
+    }
 }

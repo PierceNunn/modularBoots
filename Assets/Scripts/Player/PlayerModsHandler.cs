@@ -19,7 +19,11 @@ public class PlayerModsHandler : MonoBehaviour
             if (_modLayout[i].GetType() == typeof(ProjectileMod))
             {
                 ProjectileMod testFireMod = _modLayout[i] as ProjectileMod;
-                Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, transform.rotation).GetComponent<ProjectileController>().ApplyModifiers(statModifierQueue);
+
+                GameObject proj = Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, transform.rotation);
+                proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
+                proj.GetComponent<ProjectileController>().ApplyModifiers(statModifierQueue);
+
                 for(int j = 0; j < statModifierQueue.Count; j++)
                 {
                     print(statModifierQueue.Dequeue());

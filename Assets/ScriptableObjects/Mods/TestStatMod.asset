@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modName: cool stat mod
   modDescription: this makes it fast yay!
-  _modIcon: {fileID: 2800000, guid: bee8f8f21b71f5e40b15baaf5cb22f51, type: 3}
+  _modIcon: {fileID: 21300000, guid: bee8f8f21b71f5e40b15baaf5cb22f51, type: 3}
   _statModifiers:
   - _statToModify: 0
     _operator: 2

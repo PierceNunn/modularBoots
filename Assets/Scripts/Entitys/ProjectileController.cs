@@ -12,7 +12,7 @@ public class ProjectileController : MonoBehaviour
 
     public void Start()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * _projectileSpeed);
+        gameObject.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * _projectileSpeed);
         print(gameObject.GetComponent<Rigidbody>().velocity);
     }
 

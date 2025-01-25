@@ -23,7 +23,6 @@ public class ProjectileController : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * _projectileSpeed);
         ProjectileSpawner.GetComponent<Rigidbody>().AddForce(-gameObject.transform.forward * _projectileSpeed);
-        print(gameObject.GetComponent<Rigidbody>().velocity);
     }
 
     public void ApplyModifiers(Queue<BasicStatModifier> mods)

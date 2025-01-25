@@ -27,10 +27,12 @@ public class PlayerModsHandler : MonoBehaviour
                 proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
                 proj.GetComponent<ProjectileController>().ApplyModifiers(statModifierQueue);
                 proj.GetComponent<ProjectileController>().Fire();
+
                 for (int j = 0; j < statModifierQueue.Count; j++)
                 {
                     print(statModifierQueue.Dequeue());
                 }
+                statModifierQueue = new Queue<BasicStatModifier>();
             }
             else if (_modLayout[i].GetType() == typeof(StatMod))
             {

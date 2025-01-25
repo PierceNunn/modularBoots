@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class GunModManagerUI : MonoBehaviour
@@ -9,6 +10,7 @@ public class GunModManagerUI : MonoBehaviour
     [SerializeField] private GenericMod[] _availableMods;
     [SerializeField] private Button[] _modButtons;
     [SerializeField] private Image[] _currentMods;
+    [SerializeField] private GameObject _content;
 
     private PlayerModsHandler modsHandler;
 
@@ -16,6 +18,22 @@ public class GunModManagerUI : MonoBehaviour
     {
         modsHandler = FindObjectOfType<PlayerModsHandler>();
         UpdateModDisplay();
+    }
+
+    public void ToggleModMenu()
+    {
+        if (_content.activeSelf)
+        {
+            FindObjectOfType<PlayerInput>().actions.FindActionMap("UI").Disable();
+            FindObjectOfType<PlayerInput>().actions.FindActionMap("Player").Enable();
+            _content.SetActive(false);
+        }
+        else
+        {
+            FindObjectOfType<PlayerInput>().actions.FindActionMap("UI").Enable();
+            FindObjectOfType<PlayerInput>().actions.FindActionMap("Player").Disable();
+            _content.SetActive(true);
+        }
     }
 
     public void UpdateModDisplay()

@@ -23,8 +23,8 @@ public class PlayerModsHandler : MonoBehaviour
                 GameObject proj = Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, transform.rotation);
                 proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
                 proj.GetComponent<ProjectileController>().ApplyModifiers(statModifierQueue);
-
-                for(int j = 0; j < statModifierQueue.Count; j++)
+                proj.GetComponent<ProjectileController>().Fire();
+                for (int j = 0; j < statModifierQueue.Count; j++)
                 {
                     print(statModifierQueue.Dequeue());
                 }

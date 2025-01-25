@@ -16,7 +16,13 @@ public class ProjectileController : MonoBehaviour
 
     public void Start()
     {
+        
+    }
+
+    public void Fire()
+    {
         gameObject.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * _projectileSpeed);
+        ProjectileSpawner.GetComponent<Rigidbody>().AddForce(-gameObject.transform.forward * _projectileSpeed);
         print(gameObject.GetComponent<Rigidbody>().velocity);
     }
 

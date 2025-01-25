@@ -16,6 +16,9 @@ public class PlayerModsHandler : MonoBehaviour
 
         for (int i = 0; i < _modLayout.Length; i++)
         {
+            if (_modLayout[i] == null)
+                continue;
+
             if (_modLayout[i].GetType() == typeof(ProjectileMod))
             {
                 ProjectileMod testFireMod = _modLayout[i] as ProjectileMod;

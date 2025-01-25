@@ -8,12 +8,21 @@ public class ProjectileController : MonoBehaviour
     [SerializeField] private float _projectileDamage;
     [SerializeField] private float _projectileSpeed;
 
+    private GameObject _projectileSpawner;
+
+    public GameObject ProjectileSpawner { get => _projectileSpawner; set => _projectileSpawner = value; }
+
     delegate float modifierDelegate(float modifiedVar, float modValue);
 
     public void Start()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * _projectileSpeed);
-        print(gameObject.GetComponent<Rigidbody>().velocity);
+        
+    }
+
+    public void Fire()
+    {
+        gameObject.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * _projectileSpeed);
+        ProjectileSpawner.GetComponent<Rigidbody>().AddForce(-gameObject.transform.forward * _projectileSpeed);
     }
 
     public void ApplyModifiers(Queue<BasicStatModifier> mods)

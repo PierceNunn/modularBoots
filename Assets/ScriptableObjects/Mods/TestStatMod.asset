@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b03d04dfdd10df40b2903624829b04a, type: 3}
   m_Name: TestStatMod
   m_EditorClassIdentifier: 
-  modName: 
-  modDescription: 
+  modName: cool stat mod
+  modDescription: this makes it fast yay!
   _statModifiers:
   - _statToModify: 0
     _operator: 2
-    _modifierValue: 2
+    _modifierValue: 10

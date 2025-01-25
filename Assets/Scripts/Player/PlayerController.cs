@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public void FixedUpdate()
     {
         rb.AddForce(movementVector * _movementSpeed); //make player move
-        print(movementVector);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(90, 0, 0), 0.5f);
     }
 
     void OnMove(InputValue movementValue)

@@ -33,4 +33,9 @@ public class GunModManagerUI : MonoBehaviour
             }
         }
     }
+
+    public void AddMod(int arrayPos)
+    {
+        modsHandler.AddModToLoadout(_availableMods[arrayPos]);
+    }
 }

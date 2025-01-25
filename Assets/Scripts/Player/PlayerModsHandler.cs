@@ -48,9 +48,11 @@ public class PlayerModsHandler : MonoBehaviour
             if(_modLayout[i] == null)
             {
                 _modLayout[i] = mod;
+                print("added mod in position" + i);
                 return true;
             }
         }
+        print("failed to add mod");
         return false;
     }
 }

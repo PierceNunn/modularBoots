@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GunModManagerUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GenericMod[] _availableMods;
+    [SerializeField] private Button[] _modButtons;
 
-    // Update is called once per frame
-    void Update()
+    private PlayerModsHandler modsHandler;
+
+    public void Start()
     {
-        
+        modsHandler = FindObjectOfType<PlayerModsHandler>();
     }
 }

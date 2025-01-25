@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
 
-    private Vector2 movementVector;
+    private Vector3 movementVector;
 
     private Rigidbody rb;
     private PlayerModsHandler modsHandler;
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public void FixedUpdate()
     {
         rb.AddForce(movementVector * _movementSpeed); //make player move
+        print(movementVector);
     }
 
     void OnMove(InputValue movementValue)

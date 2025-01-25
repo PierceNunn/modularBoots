@@ -14,5 +14,23 @@ public class GunModManagerUI : MonoBehaviour
     public void Start()
     {
         modsHandler = FindObjectOfType<PlayerModsHandler>();
+        UpdateModDisplay();
+    }
+
+    public void UpdateModDisplay()
+    {
+        for(int i = 0; i < _modButtons.Length; i++)
+        {
+            if(i > _availableMods.Length)
+            {
+                _modButtons[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                _modButtons[i].gameObject.SetActive(true);
+                _modButtons[i].gameObject.GetComponent<Image>().sprite = _availableMods[i].ModIcon;
+                _modButtons[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text = _availableMods[i].ModName;
+            }
+        }
     }
 }

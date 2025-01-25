@@ -8,6 +8,7 @@ public class GunModManagerUI : MonoBehaviour
 {
     [SerializeField] private GenericMod[] _availableMods;
     [SerializeField] private Button[] _modButtons;
+    [SerializeField] private Image[] _currentMods;
 
     private PlayerModsHandler modsHandler;
 
@@ -19,9 +20,20 @@ public class GunModManagerUI : MonoBehaviour
 
     public void UpdateModDisplay()
     {
-        for(int i = 0; i < _modButtons.Length; i++)
+        UpdateAvailableModButtons();
+        UpdateCurrentModsDisplay();
+    }
+
+    private void UpdateCurrentModsDisplay()
+    {
+
+    }
+
+    private void UpdateAvailableModButtons()
+    {
+        for (int i = 0; i < _modButtons.Length; i++)
         {
-            if(i > _availableMods.Length)
+            if (i > _availableMods.Length)
             {
                 _modButtons[i].gameObject.SetActive(false);
             }
@@ -37,5 +49,6 @@ public class GunModManagerUI : MonoBehaviour
     public void AddMod(int arrayPos)
     {
         modsHandler.AddModToLoadout(_availableMods[arrayPos]);
+        UpdateModDisplay();
     }
 }

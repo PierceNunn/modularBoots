@@ -26,7 +26,17 @@ public class GunModManagerUI : MonoBehaviour
 
     private void UpdateCurrentModsDisplay()
     {
-
+        for(int i = 0; i < _currentMods.Length; i++)
+        {
+            if(modsHandler.ModLayout[i] == null)
+            {
+                _currentMods[i].sprite = null;
+            }
+            else
+            {
+                _currentMods[i].sprite = modsHandler.ModLayout[i].ModIcon;
+            }
+        }
     }
 
     private void UpdateAvailableModButtons()

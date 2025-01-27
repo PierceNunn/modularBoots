@@ -69,13 +69,14 @@ public class ProjectileController : MonoBehaviour
         }
     }
 
+    [System.Obsolete]
     public void OnCollisionEnter(Collision collision)
     {
         if(_destroyedOnCollision && !collision.gameObject.CompareTag("Projectile"))
         {
             try
             {
-                Instantiate(_impactParticles, transform.position, transform.rotation);
+                Instantiate(_impactParticles, transform.position, transform.rotation).GetComponent<ParticleSystem>().startSpeed = _projectileSpeed / 5;
             }
             catch
             {

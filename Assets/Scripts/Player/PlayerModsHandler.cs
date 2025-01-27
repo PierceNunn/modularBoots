@@ -8,9 +8,15 @@ public class PlayerModsHandler : MonoBehaviour
     [SerializeField] private GameObject _projectileSpawnLocation;
 
     private bool noPendingCooldown = true;
+    private PlayerResources pr;
 
 
     public GenericMod[] ModLayout { get => _modLayout; set => _modLayout = value; }
+
+    public void Start()
+    {
+        pr = gameObject.GetComponent<PlayerResources>();
+    }
 
     public void FireWeapon()
     {
@@ -18,6 +24,7 @@ public class PlayerModsHandler : MonoBehaviour
         {
             Queue<BasicStatModifier> statModifierQueue = new Queue<BasicStatModifier>();
             float accumulatedCooldown = 0f;
+            float accumulatedAmmoCost = 0f;
 
             for (int i = 0; i < _modLayout.Length; i++)
             {
@@ -28,12 +35,19 @@ public class PlayerModsHandler : MonoBehaviour
                 {
                     ProjectileMod testFireMod = _modLayout[i] as ProjectileMod;
 
+                    accumulatedCooldown += testFireMod.Cooldown;
+                    accumulatedAmmoCost += testFireMod.AmmoCost;
+
+                    if(pr.CurrentAmmo < accumulatedAmmoCost)
+                    {
+                        print("cannot fire, not enough ammo");
+                        return;
+                    }
+
                     GameObject proj = Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, _projectileSpawnLocation.transform.rotation);
                     proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
                     proj.GetComponent<ProjectileController>().ApplyModifiers(statModifierQueue);
                     proj.GetComponent<ProjectileController>().Fire();
-
-                    accumulatedCooldown += testFireMod.Cooldown;
 
                     for (int j = 0; j < statModifierQueue.Count; j++)
                     {
@@ -52,6 +66,7 @@ public class PlayerModsHandler : MonoBehaviour
                         
                     }
                     accumulatedCooldown += s.Cooldown;
+                    accumulatedAmmoCost += s.AmmoCost;
                 }
             }
         }

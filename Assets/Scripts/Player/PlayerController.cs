@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     void OnRotate(InputValue rotateValue)
     {
-        rotateVector = new Vector3(rotateValue.Get<Vector2>().x * 45, 0, rotateValue.Get<Vector2>().y * 45);
+        rotateVector = new Vector3(rotateValue.Get<Vector2>().y * 45, 0, -rotateValue.Get<Vector2>().x * 45);
     }
 
 

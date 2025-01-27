@@ -15,5 +15,7 @@ MonoBehaviour:
   modName: TestProjectileMod
   modDescription: test
   _modIcon: {fileID: 21300000, guid: 84957a28b4eed724aa9579291f64f6ee, type: 3}
+  _ammoCost: 1
+  _cooldown: 1
   projectiles:
   - {fileID: 4980546015630699382, guid: fc1b3ec901ccd314195050cd5826e0b2, type: 3}

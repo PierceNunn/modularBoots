@@ -44,6 +44,8 @@ public class PlayerModsHandler : MonoBehaviour
                         return;
                     }
 
+                    pr.CurrentAmmo -= accumulatedAmmoCost;
+
                     GameObject proj = Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, _projectileSpawnLocation.transform.rotation);
                     proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
                     proj.GetComponent<ProjectileController>().ApplyModifiers(statModifierQueue);

@@ -8,6 +8,7 @@ public class ProjectileController : MonoBehaviour
     [SerializeField] private float _projectileDamage;
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private bool _destroyedOnCollision = true;
+    [SerializeField] private GameObject _impactParticles;
 
     private GameObject _projectileSpawner;
 
@@ -71,7 +72,18 @@ public class ProjectileController : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {
         if(_destroyedOnCollision && !collision.gameObject.CompareTag("Projectile"))
+        {
+            try
+            {
+                Instantiate(_impactParticles, transform.position, transform.rotation);
+            }
+            catch
+            {
+                Debug.LogWarning("No particles associated with projectile!");
+            }
             Destroy(gameObject);
+        }
+            
     }
 
     public float Add(float fOne, float fTwo)

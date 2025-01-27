@@ -70,7 +70,7 @@ public class ProjectileController : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if(_destroyedOnCollision)
+        if(_destroyedOnCollision && !collision.gameObject.CompareTag("Projectile"))
             Destroy(gameObject);
     }
 

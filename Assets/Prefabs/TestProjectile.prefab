@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4405059206342653798}
   m_Layer: 0
   m_Name: TestProjectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   _projectileBehavior: 0
   _projectileDamage: 1
   _projectileSpeed: 10
+  _destroyedOnCollision: 1
 --- !u!54 &6460965475718814442
 Rigidbody:
   m_ObjectHideFlags: 0

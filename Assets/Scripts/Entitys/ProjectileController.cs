@@ -7,6 +7,7 @@ public class ProjectileController : MonoBehaviour
     [SerializeField] private Enums.projectileBehaviors _projectileBehavior;
     [SerializeField] private float _projectileDamage;
     [SerializeField] private float _projectileSpeed;
+    [SerializeField] private bool _destroyedOnCollision = true;
 
     private GameObject _projectileSpawner;
 
@@ -65,6 +66,12 @@ public class ProjectileController : MonoBehaviour
                 _projectileDamage = modDeg(_projectileDamage, mod.ModifierValue);
                 break;
         }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(_destroyedOnCollision)
+            Destroy(gameObject);
     }
 
     public float Add(float fOne, float fTwo)

@@ -12,6 +12,7 @@ public class PlayerModsHandler : MonoBehaviour
 
 
     public GenericMod[] ModLayout { get => _modLayout; set => _modLayout = value; }
+    public bool NoPendingCooldown { get => noPendingCooldown; set => noPendingCooldown = value; }
 
     public void Start()
     {
@@ -20,7 +21,7 @@ public class PlayerModsHandler : MonoBehaviour
 
     public void FireWeapon()
     {
-        if (noPendingCooldown)
+        if (NoPendingCooldown)
         {
             Queue<BasicStatModifier> statModifierQueue = new Queue<BasicStatModifier>();
             float accumulatedCooldown = 0f;
@@ -103,8 +104,8 @@ public class PlayerModsHandler : MonoBehaviour
 
     public IEnumerator WeaponCooldownTimer(float cooldownTime)
     {
-        noPendingCooldown = false;
+        NoPendingCooldown = false;
         yield return new WaitForSeconds(cooldownTime);
-        noPendingCooldown = true;
+        NoPendingCooldown = true;
     }
 }

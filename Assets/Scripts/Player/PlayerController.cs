@@ -25,9 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         rb.AddForce(movementVector * _movementSpeed); //make player move
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotateVector.x, 0, rotateVector.z), 0.5f);
-
-        print(IsGrounded());
-        if (IsGrounded())
+        if (IsGrounded() && modsHandler.NoPendingCooldown)
             pr.RefillAmmo();
     }
 

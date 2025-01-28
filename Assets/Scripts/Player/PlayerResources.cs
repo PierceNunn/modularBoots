@@ -15,4 +15,15 @@ public class PlayerResources : MonoBehaviour
     {
         CurrentAmmo = MaxAmmo;
     }
+
+    public bool SpendAmmo(float ammoUsed)
+    {
+        if(currentAmmo >= ammoUsed)
+        {
+            currentAmmo -= ammoUsed;
+            return true;
+        }
+        return false;
+        
+    }
 }

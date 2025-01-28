@@ -38,13 +38,11 @@ public class PlayerModsHandler : MonoBehaviour
                     accumulatedCooldown += testFireMod.Cooldown;
                     accumulatedAmmoCost += testFireMod.AmmoCost;
 
-                    if(pr.CurrentAmmo < accumulatedAmmoCost)
+                    if(!pr.SpendAmmo(accumulatedAmmoCost))
                     {
                         print("cannot fire, not enough ammo");
                         return;
                     }
-
-                    pr.CurrentAmmo -= accumulatedAmmoCost;
 
                     GameObject proj = Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, _projectileSpawnLocation.transform.rotation);
                     proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;

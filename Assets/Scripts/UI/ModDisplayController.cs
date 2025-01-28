@@ -7,6 +7,7 @@ using TMPro;
 public class ModDisplayController : MonoBehaviour
 {
     [SerializeField] private GenericMod _modToDisplay;
+    [SerializeField] private bool _showAllInfo = true;
     [SerializeField] private Image _modIconDisplay;
     [SerializeField] private TextMeshProUGUI _modNameDisplay;
     [SerializeField] private TextMeshProUGUI _modDescriptionDisplay;
@@ -17,7 +18,9 @@ public class ModDisplayController : MonoBehaviour
     {
         _modIconDisplay.sprite = ModToDisplay.ModIcon;
         _modNameDisplay.text = ModToDisplay.ModName;
-        _modDescriptionDisplay.text = ModToDisplay.ModDescription;
+
+        if(_showAllInfo)
+            _modDescriptionDisplay.text = ModToDisplay.ModDescription;
     }
 
     public void UpdateDisplayInfo(GenericMod mtd)

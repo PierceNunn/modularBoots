@@ -11,10 +11,18 @@ public class ModDisplayController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _modNameDisplay;
     [SerializeField] private TextMeshProUGUI _modDescriptionDisplay;
 
+    public GenericMod ModToDisplay { get => _modToDisplay; set => _modToDisplay = value; }
+
     public void UpdateDisplayInfo()
     {
-        _modIconDisplay.sprite = _modToDisplay.ModIcon;
-        _modNameDisplay.text = _modToDisplay.ModName;
-        _modDescriptionDisplay.text = _modToDisplay.ModDescription;
+        _modIconDisplay.sprite = ModToDisplay.ModIcon;
+        _modNameDisplay.text = ModToDisplay.ModName;
+        _modDescriptionDisplay.text = ModToDisplay.ModDescription;
+    }
+
+    public void UpdateDisplayInfo(GenericMod mtd)
+    {
+        _modToDisplay = mtd;
+        UpdateDisplayInfo();
     }
 }

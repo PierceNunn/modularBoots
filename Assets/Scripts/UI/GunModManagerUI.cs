@@ -69,8 +69,7 @@ public class GunModManagerUI : MonoBehaviour
             else
             {
                 _modButtons[i].gameObject.SetActive(true);
-                _modButtons[i].gameObject.GetComponent<Image>().sprite = _availableMods[i].ModIcon;
-                _modButtons[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text = _availableMods[i].ModName;
+                _modButtons[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(_availableMods[i]);
             }
         }
     }

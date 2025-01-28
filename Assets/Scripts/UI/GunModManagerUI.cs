@@ -49,11 +49,11 @@ public class GunModManagerUI : MonoBehaviour
         {
             if(modsHandler.ModLayout[i] == null)
             {
-                _currentMods[i].sprite = null;
+                _currentMods[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(null);
             }
             else
             {
-                _currentMods[i].sprite = modsHandler.ModLayout[i].ModIcon;
+                _currentMods[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(modsHandler.ModLayout[i]);
             }
         }
     }
@@ -69,8 +69,7 @@ public class GunModManagerUI : MonoBehaviour
             else
             {
                 _modButtons[i].gameObject.SetActive(true);
-                _modButtons[i].gameObject.GetComponent<Image>().sprite = _availableMods[i].ModIcon;
-                _modButtons[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text = _availableMods[i].ModName;
+                _modButtons[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(_availableMods[i]);
             }
         }
     }

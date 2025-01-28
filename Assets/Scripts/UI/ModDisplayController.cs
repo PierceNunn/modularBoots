@@ -6,15 +6,15 @@ using TMPro;
 
 public class ModDisplayController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GenericMod _modToDisplay;
+    [SerializeField] private Image _modIconDisplay;
+    [SerializeField] private TextMeshProUGUI _modNameDisplay;
+    [SerializeField] private TextMeshProUGUI _modDescriptionDisplay;
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateDisplayInfo()
     {
-        
+        _modIconDisplay.sprite = _modToDisplay.ModIcon;
+        _modNameDisplay.text = _modToDisplay.ModName;
+        _modDescriptionDisplay.text = _modToDisplay.ModDescription;
     }
 }

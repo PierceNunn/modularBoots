@@ -49,11 +49,11 @@ public class GunModManagerUI : MonoBehaviour
         {
             if(modsHandler.ModLayout[i] == null)
             {
-                _currentMods[i].sprite = null;
+                _currentMods[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(null);
             }
             else
             {
-                _currentMods[i].sprite = modsHandler.ModLayout[i].ModIcon;
+                _currentMods[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(modsHandler.ModLayout[i]);
             }
         }
     }

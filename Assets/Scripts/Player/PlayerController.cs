@@ -12,17 +12,21 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private PlayerModsHandler modsHandler;
+    private PlayerResources pr;
 
     public void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
         modsHandler = gameObject.GetComponent<PlayerModsHandler>();
+        pr = gameObject.GetComponent<PlayerResources>();
     }
 
     public void FixedUpdate()
     {
         rb.AddForce(movementVector * _movementSpeed); //make player move
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotateVector.x, 0, rotateVector.z), 0.5f);
+        if (IsGrounded() && modsHandler.NoPendingCooldown)
+            pr.RefillAmmo();
     }
 
     void OnMove(InputValue movementValue)
@@ -45,5 +49,14 @@ public class PlayerController : MonoBehaviour
     public void OnMenu()
     {
         FindObjectOfType<GunModManagerUI>().ToggleModMenu();
+    }
+
+    public bool IsGrounded()
+    {
+        bool output = Physics.Raycast(transform.position, -Vector3.up, 0.8f);
+        if(output)
+            Debug.DrawRay(transform.position, Vector3.up, Color.green, 10f);
+
+        return output;
     }
 }

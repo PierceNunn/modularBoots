@@ -26,4 +26,9 @@ public class PlayerResources : MonoBehaviour
         return false;
         
     }
+
+    public void RefillAmmo()
+    {
+        currentAmmo = _maxAmmo;
+    }
 }

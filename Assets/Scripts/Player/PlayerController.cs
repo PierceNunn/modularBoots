@@ -12,17 +12,23 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private PlayerModsHandler modsHandler;
+    private PlayerResources pr;
 
     public void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
         modsHandler = gameObject.GetComponent<PlayerModsHandler>();
+        pr = gameObject.GetComponent<PlayerResources>();
     }
 
     public void FixedUpdate()
     {
         rb.AddForce(movementVector * _movementSpeed); //make player move
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotateVector.x, 0, rotateVector.z), 0.5f);
+
+        print(IsGrounded());
+        if (IsGrounded())
+            pr.RefillAmmo();
     }
 
     void OnMove(InputValue movementValue)

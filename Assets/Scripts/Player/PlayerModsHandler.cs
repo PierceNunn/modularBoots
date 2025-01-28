@@ -14,6 +14,7 @@ public class PlayerModsHandler : MonoBehaviour
 
     public GenericMod[] ModLayout { get => _modLayout; set => _modLayout = value; }
     public bool NoPendingCooldown { get => noPendingCooldown; set => noPendingCooldown = value; }
+    public float RemainingCooldown { get => remainingCooldown; set => remainingCooldown = value; }
 
     public void Start()
     {
@@ -108,9 +109,10 @@ public class PlayerModsHandler : MonoBehaviour
         NoPendingCooldown = false;
         for (float i = cooldownTime; i > 0f; i -= Time.deltaTime)
         {
-            remainingCooldown = i;
+            RemainingCooldown = i;
             yield return null;
         }
+        RemainingCooldown = 0f;
         NoPendingCooldown = true;
     }
 }

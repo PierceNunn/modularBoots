@@ -8,6 +8,7 @@ public class PlayerModsHandler : MonoBehaviour
     [SerializeField] private GameObject _projectileSpawnLocation;
 
     private bool noPendingCooldown = true;
+    private float remainingCooldown = 0f;
     private PlayerResources pr;
 
 
@@ -105,7 +106,11 @@ public class PlayerModsHandler : MonoBehaviour
     public IEnumerator WeaponCooldownTimer(float cooldownTime)
     {
         NoPendingCooldown = false;
-        yield return new WaitForSeconds(cooldownTime);
+        for (float i = cooldownTime; i > 0f; i -= Time.deltaTime)
+        {
+            remainingCooldown = i;
+            yield return null;
+        }
         NoPendingCooldown = true;
     }
 }

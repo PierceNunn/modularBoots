@@ -46,4 +46,13 @@ public class PlayerController : MonoBehaviour
     {
         FindObjectOfType<GunModManagerUI>().ToggleModMenu();
     }
+
+    public bool IsGrounded()
+    {
+        bool output = Physics.Raycast(transform.position, -Vector3.up, 0.8f);
+        if(output)
+            Debug.DrawRay(transform.position, Vector3.up, Color.green, 10f);
+
+        return output;
+    }
 }

@@ -16,11 +16,23 @@ public class ModDisplayController : MonoBehaviour
 
     public void UpdateDisplayInfo()
     {
-        _modIconDisplay.sprite = ModToDisplay.ModIcon;
-        _modNameDisplay.text = ModToDisplay.ModName;
+        if(_modToDisplay != null)
+        {
+            _modIconDisplay.sprite = ModToDisplay.ModIcon;
+            _modNameDisplay.text = ModToDisplay.ModName;
 
-        if(_showAllInfo)
-            _modDescriptionDisplay.text = ModToDisplay.ModDescription;
+            if (_showAllInfo)
+                _modDescriptionDisplay.text = ModToDisplay.ModDescription;
+        }
+        else
+        {
+            _modIconDisplay.sprite = null;
+            _modNameDisplay.text = "";
+
+            if (_showAllInfo)
+                _modDescriptionDisplay.text = "";
+        }
+        
     }
 
     public void UpdateDisplayInfo(GenericMod mtd)

@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 1693274038689333979}
   - component: {fileID: 6899204715884754413}
   - component: {fileID: 6460965475718814442}
-  m_Layer: 0
+  - component: {fileID: 4405059206342653798}
+  m_Layer: 2
   m_Name: TestProjectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +94,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4980546015630699382}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 659ddc4c1041dd043be17fdcdb8faba7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -122,6 +123,8 @@ MonoBehaviour:
   _projectileBehavior: 0
   _projectileDamage: 1
   _projectileSpeed: 10
+  _destroyedOnCollision: 0
+  _impactParticles: {fileID: 8212160321374351005, guid: 820f8d124a5b7c34e99fad543d6c00c5, type: 3}
 --- !u!54 &6460965475718814442
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -144,8 +147,21 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4405059206342653798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4980546015630699382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be095dc1767d2742aab48cb38054ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalLifetime: 1

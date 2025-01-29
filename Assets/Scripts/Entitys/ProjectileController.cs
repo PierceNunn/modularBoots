@@ -7,13 +7,24 @@ public class ProjectileController : MonoBehaviour
     [SerializeField] private Enums.projectileBehaviors _projectileBehavior;
     [SerializeField] private float _projectileDamage;
     [SerializeField] private float _projectileSpeed;
+    [SerializeField] private bool _destroyedOnCollision = true;
+    [SerializeField] private GameObject _impactParticles;
+
+    private GameObject _projectileSpawner;
+
+    public GameObject ProjectileSpawner { get => _projectileSpawner; set => _projectileSpawner = value; }
 
     delegate float modifierDelegate(float modifiedVar, float modValue);
 
     public void Start()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * _projectileSpeed);
-        print(gameObject.GetComponent<Rigidbody>().velocity);
+        
+    }
+
+    public void Fire()
+    {
+        gameObject.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * _projectileSpeed);
+        ProjectileSpawner.GetComponent<Rigidbody>().AddForce(-gameObject.transform.forward * _projectileSpeed);
     }
 
     public void ApplyModifiers(Queue<BasicStatModifier> mods)
@@ -56,6 +67,24 @@ public class ProjectileController : MonoBehaviour
                 _projectileDamage = modDeg(_projectileDamage, mod.ModifierValue);
                 break;
         }
+    }
+
+    [System.Obsolete]
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(_destroyedOnCollision && !collision.gameObject.CompareTag("Projectile"))
+        {
+            try
+            {
+                Instantiate(_impactParticles, transform.position, transform.rotation).GetComponent<ParticleSystem>().startSpeed = _projectileSpeed / 5;
+            }
+            catch
+            {
+                Debug.LogWarning("No particles associated with projectile!");
+            }
+            Destroy(gameObject);
+        }
+            
     }
 
     public float Add(float fOne, float fTwo)

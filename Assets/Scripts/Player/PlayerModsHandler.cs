@@ -7,33 +7,112 @@ public class PlayerModsHandler : MonoBehaviour
     [SerializeField] private GenericMod[] _modLayout;
     [SerializeField] private GameObject _projectileSpawnLocation;
 
+    private bool noPendingCooldown = true;
+    private float remainingCooldown = 0f;
+    private PlayerResources pr;
+
 
     public GenericMod[] ModLayout { get => _modLayout; set => _modLayout = value; }
+    public bool NoPendingCooldown { get => noPendingCooldown; set => noPendingCooldown = value; }
+    public float RemainingCooldown { get => remainingCooldown; set => remainingCooldown = value; }
+
+    public void Start()
+    {
+        pr = gameObject.GetComponent<PlayerResources>();
+    }
 
     public void FireWeapon()
     {
-        Queue<BasicStatModifier> statModifierQueue = new Queue<BasicStatModifier>();
-
-        for (int i = 0; i < _modLayout.Length; i++)
+        if (NoPendingCooldown)
         {
-            if (_modLayout[i].GetType() == typeof(ProjectileMod))
+            Queue<BasicStatModifier> statModifierQueue = new Queue<BasicStatModifier>();
+            float accumulatedCooldown = 0f;
+            float accumulatedAmmoCost = 0f;
+
+            for (int i = 0; i < _modLayout.Length; i++)
             {
-                ProjectileMod testFireMod = _modLayout[i] as ProjectileMod;
-                Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, Quaternion.identity).GetComponent<ProjectileController>().ApplyModifiers(statModifierQueue);
-                for(int j = 0; j < statModifierQueue.Count; j++)
+                if (_modLayout[i] == null)
+                    continue;
+
+                if (_modLayout[i].GetType() == typeof(ProjectileMod))
                 {
-                    print(statModifierQueue.Dequeue());
+                    ProjectileMod testFireMod = _modLayout[i] as ProjectileMod;
+
+                    accumulatedCooldown += testFireMod.Cooldown;
+                    accumulatedAmmoCost += testFireMod.AmmoCost;
+
+                    if(!pr.SpendAmmo(accumulatedAmmoCost))
+                    {
+                        print("cannot fire, not enough ammo");
+                        return;
+                    }
+
+                    GameObject proj = Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, _projectileSpawnLocation.transform.rotation);
+                    proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
+                    proj.GetComponent<ProjectileController>().ApplyModifiers(statModifierQueue);
+                    proj.GetComponent<ProjectileController>().Fire();
+
+                    for (int j = 0; j < statModifierQueue.Count; j++)
+                    {
+                        print(statModifierQueue.Dequeue());
+                    }
+                    statModifierQueue = new Queue<BasicStatModifier>();
+
+                    StartCoroutine(WeaponCooldownTimer(accumulatedCooldown));
                 }
-            }
-            else if (_modLayout[i].GetType() == typeof(StatMod))
-            {
-                StatMod s = _modLayout[i] as StatMod;
-                foreach(BasicStatModifier bsm in s.StatModifiers)
+                else if (_modLayout[i].GetType() == typeof(StatMod))
                 {
-                    statModifierQueue.Enqueue(bsm);
+                    StatMod s = _modLayout[i] as StatMod;
+                    foreach (BasicStatModifier bsm in s.StatModifiers)
+                    {
+                        statModifierQueue.Enqueue(bsm);
+                        
+                    }
+                    accumulatedCooldown += s.Cooldown;
+                    accumulatedAmmoCost += s.AmmoCost;
                 }
             }
         }
+        else
+        {
+            print("can't fire, waiting on cooldown");
+        }
         
+        
+    }
+
+    public bool AddModToLoadout(GenericMod mod)
+    {
+        for(int i = 0; i < _modLayout.Length; i++)
+        {
+            if(_modLayout[i] == null)
+            {
+                _modLayout[i] = mod;
+                print("added mod in position" + i);
+                return true;
+            }
+        }
+        print("failed to add mod");
+        return false;
+    }
+
+    public void ClearMods()
+    {
+        for (int i = 0; i < _modLayout.Length; i++)
+        {
+            _modLayout[i] = null;
+        }
+    }
+
+    public IEnumerator WeaponCooldownTimer(float cooldownTime)
+    {
+        NoPendingCooldown = false;
+        for (float i = cooldownTime; i > 0f; i -= Time.deltaTime)
+        {
+            RemainingCooldown = i;
+            yield return null;
+        }
+        RemainingCooldown = 0f;
+        NoPendingCooldown = true;
     }
 }

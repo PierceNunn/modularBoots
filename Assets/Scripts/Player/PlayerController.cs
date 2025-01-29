@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
+    private bool isFiring = false;
 
     private Rigidbody rb;
     private PlayerModsHandler modsHandler;
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotateVector.x, 0, rotateVector.z), 0.5f);
         if (IsGrounded() && modsHandler.NoPendingCooldown)
             pr.RefillAmmo();
+        if(isFiring)
+            modsHandler.FireWeapon();
     }
 
     void OnMove(InputValue movementValue)
@@ -51,9 +54,9 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void OnFire()
+    public void OnFire(InputValue fireValue)
     {
-        modsHandler.FireWeapon();
+        isFiring = fireValue.isPressed;
     }
 
     public void OnMenu()

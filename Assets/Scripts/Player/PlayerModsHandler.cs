@@ -58,6 +58,7 @@ public class PlayerModsHandler : MonoBehaviour
                     }
                     statModifierQueue = new Queue<BasicStatModifier>();
 
+                    StopAllCoroutines();
                     StartCoroutine(WeaponCooldownTimer(accumulatedCooldown));
                 }
                 else if (_modLayout[i].GetType() == typeof(StatMod))
@@ -107,9 +108,10 @@ public class PlayerModsHandler : MonoBehaviour
     public IEnumerator WeaponCooldownTimer(float cooldownTime)
     {
         NoPendingCooldown = false;
-        for (float i = cooldownTime; i > 0f; i -= Time.deltaTime)
+        remainingCooldown += cooldownTime;
+        while(remainingCooldown > 0f)
         {
-            RemainingCooldown = i;
+            RemainingCooldown -= Time.deltaTime;
             yield return null;
         }
         RemainingCooldown = 0f;

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b03d04dfdd10df40b2903624829b04a, type: 3}
-  m_Name: TestStatMod
+  m_Name: CooldownReducer
   m_EditorClassIdentifier: 
-  modName: bullet accelerator
-  modDescription: multiplies projectile speed by 1.5
+  modName: Cooling Vents
+  modDescription: reduces weapon cooldown
   _modIcon: {fileID: 21300000, guid: bee8f8f21b71f5e40b15baaf5cb22f51, type: 3}
-  _ammoCost: 5
+  _ammoCost: 3
   _cooldown: 0
   _statModifiers:
-  - _statToModify: 0
-    _operator: 2
-    _modifierValue: 1.5
+  - _statToModify: 2
+    _operator: 3
+    _modifierValue: 2

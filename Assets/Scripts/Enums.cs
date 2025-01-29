@@ -21,6 +21,7 @@ public class Enums : MonoBehaviour
     public enum modifiableStats
     {
         speed,
-        damage
+        damage,
+        cooldown
     }
 }

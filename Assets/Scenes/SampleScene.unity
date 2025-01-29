@@ -824,7 +824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 367831835}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ProjectileSpawnLoc
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -3435,7 +3435,7 @@ GameObject:
   - component: {fileID: 2055711326}
   - component: {fileID: 2055711327}
   - component: {fileID: 2055711328}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TestCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3455,6 +3455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 5
+  _jumpSpeed: 100
 --- !u!114 &2055711321
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -25,12 +25,12 @@
                 },
                 {
                     "name": "Fire",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "8d95fe36-8e31-4e59-a2f9-cc541c783d7d",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Integer",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Rotate",
@@ -45,6 +45,15 @@
                     "name": "Menu",
                     "type": "Button",
                     "id": "cc300f68-eead-4cd2-99fc-6d4b593e2559",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "c7fd62b1-4af3-4836-b52b-04792b1455b1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -286,7 +295,7 @@
                 {
                     "name": "up",
                     "id": "60d9aba5-d8bd-4958-a52c-637adc84af9d",
-                    "path": "<Keyboard>/numpad8",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -297,7 +306,7 @@
                 {
                     "name": "down",
                     "id": "6361ff37-4b69-4526-8a2d-64ebc9f5a517",
-                    "path": "<Keyboard>/numpad2",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -308,7 +317,7 @@
                 {
                     "name": "left",
                     "id": "cfc046b4-d93e-4bbc-823b-a00e50740709",
-                    "path": "<Keyboard>/numpad4",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -319,7 +328,7 @@
                 {
                     "name": "right",
                     "id": "2b1807a4-68f2-4ddf-8a43-78c69d0603f9",
-                    "path": "<Keyboard>/numpad6",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -335,6 +344,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cbaa70f3-5cbb-4da0-9060-6a365fb97e21",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

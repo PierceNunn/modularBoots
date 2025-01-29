@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: TestStatMod
   m_EditorClassIdentifier: 
   modName: bullet accelerator
-  modDescription: multiplies projectile speed by 10
+  modDescription: multiplies projectile speed by 1.5
   _modIcon: {fileID: 21300000, guid: bee8f8f21b71f5e40b15baaf5cb22f51, type: 3}
   _ammoCost: 5
   _cooldown: 0
   _statModifiers:
   - _statToModify: 0
     _operator: 2
-    _modifierValue: 10
+    _modifierValue: 1.5

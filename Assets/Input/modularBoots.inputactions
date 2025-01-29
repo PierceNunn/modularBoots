@@ -295,7 +295,7 @@
                 {
                     "name": "up",
                     "id": "60d9aba5-d8bd-4958-a52c-637adc84af9d",
-                    "path": "<Keyboard>/numpad8",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -306,7 +306,7 @@
                 {
                     "name": "down",
                     "id": "6361ff37-4b69-4526-8a2d-64ebc9f5a517",
-                    "path": "<Keyboard>/numpad2",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -317,7 +317,7 @@
                 {
                     "name": "left",
                     "id": "cfc046b4-d93e-4bbc-823b-a00e50740709",
-                    "path": "<Keyboard>/numpad4",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -328,7 +328,7 @@
                 {
                     "name": "right",
                     "id": "2b1807a4-68f2-4ddf-8a43-78c69d0603f9",
-                    "path": "<Keyboard>/numpad6",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -38,7 +38,10 @@ public class PlayerController : MonoBehaviour
 
     void OnRotate(InputValue rotateValue)
     {
-        rotateVector = new Vector3(rotateValue.Get<Vector2>().y * 45, 0, -rotateValue.Get<Vector2>().x * 45);
+        if (!IsGrounded())
+            rotateVector = new Vector3(rotateValue.Get<Vector2>().y * 45, 0, -rotateValue.Get<Vector2>().x * 45);
+        else
+            rotateVector = new Vector3(0, 0, 0);
     }
 
     void OnJump(InputValue rotateValue)

@@ -66,6 +66,9 @@ public class ProjectileController : MonoBehaviour
             case Enums.modifiableStats.damage:
                 _projectileDamage = modDeg(_projectileDamage, mod.ModifierValue);
                 break;
+            case Enums.modifiableStats.cooldown:
+                FindObjectOfType<PlayerModsHandler>().RemainingCooldown = modDeg(FindObjectOfType<PlayerModsHandler>().RemainingCooldown, mod.ModifierValue);
+                break;
         }
     }
 

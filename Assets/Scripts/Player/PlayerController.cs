@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
+    [SerializeField] private float _jumpSpeed;
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
@@ -38,6 +39,12 @@ public class PlayerController : MonoBehaviour
     void OnRotate(InputValue rotateValue)
     {
         rotateVector = new Vector3(rotateValue.Get<Vector2>().y * 45, 0, -rotateValue.Get<Vector2>().x * 45);
+    }
+
+    void OnJump(InputValue rotateValue)
+    {
+        if(IsGrounded())
+            rb.AddForce(Vector3.up * _jumpSpeed);
     }
 
 

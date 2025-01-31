@@ -47,6 +47,9 @@ public class PlayerModsHandler : MonoBehaviour
                         return;
                     }
 
+                    StopAllCoroutines();
+                    StartCoroutine(WeaponCooldownTimer(accumulatedCooldown));
+
                     GameObject proj = Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, _projectileSpawnLocation.transform.rotation);
                     proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
                     proj.GetComponent<ProjectileController>().ApplyModifiers(statModifierQueue);
@@ -58,8 +61,7 @@ public class PlayerModsHandler : MonoBehaviour
                     }
                     statModifierQueue = new Queue<BasicStatModifier>();
 
-                    StopAllCoroutines();
-                    StartCoroutine(WeaponCooldownTimer(accumulatedCooldown));
+                    
                 }
                 else if (_modLayout[i].GetType() == typeof(StatMod))
                 {

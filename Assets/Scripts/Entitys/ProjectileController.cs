@@ -37,6 +37,7 @@ public class ProjectileController : MonoBehaviour
 
     public void ApplyModifier(BasicStatModifier mod)
     {
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         modifierDelegate modDeg = null;
 
         switch(mod.Operator)
@@ -68,6 +69,10 @@ public class ProjectileController : MonoBehaviour
                 break;
             case Enums.modifiableStats.cooldown:
                 FindObjectOfType<PlayerModsHandler>().RemainingCooldown = modDeg(FindObjectOfType<PlayerModsHandler>().RemainingCooldown, mod.ModifierValue);
+                break;
+            case Enums.modifiableStats.size:
+                gameObject.transform.localScale = new Vector3(modDeg(gameObject.transform.localScale.x, mod.ModifierValue), modDeg(gameObject.transform.localScale.y, mod.ModifierValue), modDeg(gameObject.transform.localScale.z, mod.ModifierValue));
+                rb.mass = modDeg(rb.mass, mod.ModifierValue);
                 break;
         }
     }

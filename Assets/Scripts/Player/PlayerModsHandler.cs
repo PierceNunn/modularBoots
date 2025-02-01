@@ -49,6 +49,7 @@ public class PlayerModsHandler : MonoBehaviour
 
                     StopAllCoroutines();
                     StartCoroutine(WeaponCooldownTimer(accumulatedCooldown));
+                    accumulatedCooldown = 0;
 
                     GameObject proj = Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, _projectileSpawnLocation.transform.rotation);
                     proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;

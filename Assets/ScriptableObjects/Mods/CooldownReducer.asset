@@ -19,5 +19,5 @@ MonoBehaviour:
   _cooldown: 0
   _statModifiers:
   - _statToModify: 2
-    _operator: 2
+    _operator: 3
     _modifierValue: 2

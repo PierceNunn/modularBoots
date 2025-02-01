@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6460965475718814442}
   - component: {fileID: 4405059206342653798}
   m_Layer: 2
-  m_Name: TestProjectile
+  m_Name: SmallProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2.2}
-  m_LocalScale: {x: 0.42, y: 0.42, z: 0.42}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileBehavior: 0
-  _projectileDamage: 5
-  _projectileSpeed: 60
+  _projectileDamage: 1
+  _projectileSpeed: 20
   _destroyedOnCollision: 0
   _impactParticles: {fileID: 8212160321374351005, guid: 820f8d124a5b7c34e99fad543d6c00c5, type: 3}
 --- !u!54 &6460965475718814442
@@ -133,7 +133,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4980546015630699382}
   serializedVersion: 4
-  m_Mass: 0.05
+  m_Mass: 0.01
   m_Drag: 0.01
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

@@ -13,12 +13,14 @@ public class PlayerController : MonoBehaviour
     private bool isFiring = false;
 
     private Rigidbody rb;
+    private Collider cr;
     private PlayerModsHandler modsHandler;
     private PlayerResources pr;
 
     public void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        cr = gameObject.GetComponent<Collider>();
         modsHandler = gameObject.GetComponent<PlayerModsHandler>();
         pr = gameObject.GetComponent<PlayerResources>();
     }
@@ -66,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded()
     {
-        bool output = Physics.Raycast(transform.position, -Vector3.up, 0.8f);
+        bool output = Physics.Raycast(transform.position, -Vector3.up, cr.bounds.extents.y+ 0.1f);
         if(output)
             Debug.DrawRay(transform.position, Vector3.up, Color.green, 10f);
 

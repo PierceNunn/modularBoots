@@ -22,6 +22,7 @@ public class Enums : MonoBehaviour
     {
         speed,
         damage,
-        cooldown
+        cooldown,
+        size
     }
 }

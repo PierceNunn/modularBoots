@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using TMPro;
+using System.Linq;
 
 public class ModDisplayController : MonoBehaviour
 {
@@ -11,9 +13,29 @@ public class ModDisplayController : MonoBehaviour
     [SerializeField] private Image _modIconDisplay;
     [SerializeField] private TextMeshProUGUI _modNameDisplay;
     [SerializeField] private TextMeshProUGUI _modDescriptionDisplay;
+    [SerializeField] private PlayerInput pi;
+
+    private Rect bounds;
+    private RectTransform rectTransform;
 
     public GenericMod ModToDisplay { get => _modToDisplay; set => _modToDisplay = value; }
 
+    public void Start()
+    {
+        rectTransform = gameObject.GetComponent<RectTransform>();
+        bounds = rectTransform.rect;
+
+    }
+
+    public void Update()
+    {
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        Vector2 localMousePosition = rectTransform.InverseTransformPoint(mousePos);
+        if (rectTransform.rect.Contains(localMousePosition))
+        {
+            print(true);
+        }
+    }
     public void UpdateDisplayInfo()
     {
         if(_modToDisplay != null)
@@ -39,5 +61,10 @@ public class ModDisplayController : MonoBehaviour
     {
         _modToDisplay = mtd;
         UpdateDisplayInfo();
+    }
+
+    public void OnPoint(InputAction.CallbackContext context)
+    {
+        print("glort");
     }
 }

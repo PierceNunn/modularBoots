@@ -6,6 +6,7 @@ public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] protected Enemy enemyStats;
     [SerializeField] protected Transform target;
+    [SerializeField] private GameObject boost;
 
     protected bool isAggro;
     
@@ -20,6 +21,13 @@ public class EnemyBehavior : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Die()
+    {
+        Debug.Log("enemy died");
+        Instantiate(boost);
+        Destroy(gameObject);
     }
 
     public IEnumerator AggroCheck()

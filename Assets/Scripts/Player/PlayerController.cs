@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 movementVector;
     private Vector3 rotateVector;
     private bool isFiring = false;
+    private bool isMoving = false;
 
     private Rigidbody rb;
     private Collider cr;
@@ -27,8 +29,24 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        rb.AddForce(movementVector * _movementSpeed); //make player move
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotateVector.x, 0, rotateVector.z), 0.5f);
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraRight = Camera.main.transform.right;
+        cameraForward.y = 0;
+        cameraRight.y = 0;
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        Vector3 newMovementZ = movementVector.z * cameraForward;
+        Vector3 newMovementX = movementVector.x * cameraRight;
+        Vector3 newRotationZ = rotateVector.z * cameraForward;
+        Vector3 newRotationX = rotateVector.x * cameraRight;
+
+        Vector3 cameraRelativeMovement = newMovementX + newMovementZ;
+        Vector3 cameraRelativeRotation = newRotationX + newRotationZ;
+        //Debug.Log(movementVector);
+
+        rb.AddForce(cameraRelativeMovement * _movementSpeed); //make player move
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(cameraRelativeRotation), 0.5f);
         if (IsGrounded() && modsHandler.NoPendingCooldown)
             pr.RefillAmmo();
         if(isFiring)
@@ -37,8 +55,12 @@ public class PlayerController : MonoBehaviour
 
     void OnMove(InputValue movementValue)
     {
+        isMoving = !isMoving;
+        //Debug.Log(isMoving);
+
         //set movement direction to input
         movementVector = new Vector3(movementValue.Get<Vector2>().x, 0, movementValue.Get<Vector2>().y);
+        Debug.Log(movementVector);
     }
 
     void OnRotate(InputValue rotateValue)

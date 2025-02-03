@@ -6,11 +6,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Enemy : ScriptableObject
 {
-    [SerializeField] private string enemyName;
-    [SerializeField] private int health;
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float aggroDistance;
-
-    public float AggroDistance { get => aggroDistance; }
+    [SerializeField] public string enemyName;
+    [SerializeField] public int health;
+    [SerializeField] public float moveSpeed;
+    [SerializeField] public float aggroDistance;
+    [SerializeField] public float attackInterval;
 
 }

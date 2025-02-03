@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    [SerializeField] private Enemy enemyStats;
-    [SerializeField] private Transform target;
+    [SerializeField] protected Enemy enemyStats;
+    [SerializeField] protected Transform target;
 
-    private bool isAggro;
+    protected bool isAggro;
     
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        
+        isAggro = false;
+        StartCoroutine(AggroCheck());
     }
 
     // Update is called once per frame
@@ -21,19 +22,29 @@ public class EnemyBehavior : MonoBehaviour
         
     }
 
-    private IEnumerator AggroCheck()
+    public IEnumerator AggroCheck()
     {
         while (true)
         {
-            if(Vector3.Distance(this.transform.position, target.position) < enemyStats.AggroDistance)
+            if(Vector3.Distance(this.transform.position, target.position) < enemyStats.aggroDistance)
             {
-                isAggro = true;
+                if (isAggro == false)
+                {
+                    isAggro = true;
+                    StartCoroutine(Attack());
+                }  
             }
             else
             {
                 isAggro = false;
             }
-            yield return new WaitForSeconds(.25f);
+
+            yield return new WaitForSeconds(1f);
         }
+    }
+
+    public virtual IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(enemyStats.attackInterval);
     }
 }

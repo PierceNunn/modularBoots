@@ -38,12 +38,15 @@ public class PlayerController : MonoBehaviour
 
         Vector3 newMovementZ = movementVector.z * cameraForward;
         Vector3 newMovementX = movementVector.x * cameraRight;
+        Vector3 newRotationZ = rotateVector.z * cameraForward;
+        Vector3 newRotationX = rotateVector.x * cameraRight;
 
         Vector3 cameraRelativeMovement = newMovementX + newMovementZ;
+        Vector3 cameraRelativeRotation = newRotationX + newRotationZ;
         //Debug.Log(movementVector);
 
         rb.AddForce(cameraRelativeMovement * _movementSpeed); //make player move
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotateVector.x, 0, rotateVector.z), 0.5f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(cameraRelativeRotation), 0.5f);
         if (IsGrounded() && modsHandler.NoPendingCooldown)
             pr.RefillAmmo();
         if(isFiring)

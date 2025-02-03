@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
+    private Vector3 pointVector;
     private bool isFiring = false;
     private bool isMoving = false;
 
@@ -51,6 +52,11 @@ public class PlayerController : MonoBehaviour
             pr.RefillAmmo();
         if(isFiring)
             modsHandler.FireWeapon();
+    }
+
+    void OnPoint(InputValue pointValue)
+    {
+        pointVector = pointValue.Get<Vector2>();
     }
 
     void OnMove(InputValue movementValue)

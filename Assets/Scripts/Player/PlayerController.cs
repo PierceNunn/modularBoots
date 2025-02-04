@@ -74,8 +74,11 @@ public class PlayerController : MonoBehaviour, CanDie
 
     void OnJump(InputValue rotateValue)
     {
-        if(IsGrounded())
+        if (IsGrounded())
+        {
             rb.AddForce(Vector3.up * _jumpSpeed);
+            AudioManager.Instance.PlaySFX("Jump");
+        }
     }
 
 

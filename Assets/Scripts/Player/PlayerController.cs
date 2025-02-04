@@ -4,10 +4,11 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, CanDie
 {
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _jumpSpeed;
+    [SerializeField] private float _dashSpeed;
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
@@ -83,6 +84,11 @@ public class PlayerController : MonoBehaviour
         isFiring = fireValue.isPressed;
     }
 
+    public void OnDash()
+    {
+        rb.AddForce(Camera.main.transform.forward * _dashSpeed, ForceMode.Impulse);
+    }
+
     public void OnMenu()
     {
         FindObjectOfType<GunModManagerUI>().ToggleModMenu();
@@ -95,5 +101,10 @@ public class PlayerController : MonoBehaviour
             Debug.DrawRay(transform.position, Vector3.up, Color.green, 10f);
 
         return output;
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player has died");
     }
 }

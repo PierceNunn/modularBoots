@@ -119,4 +119,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boostForce: 10
-  pr: {fileID: 0}
+  healing: 1

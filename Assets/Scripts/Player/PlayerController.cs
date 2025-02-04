@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _jumpSpeed;
+    [SerializeField] private float _dashSpeed;
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
@@ -81,6 +82,11 @@ public class PlayerController : MonoBehaviour
     public void OnFire(InputValue fireValue)
     {
         isFiring = fireValue.isPressed;
+    }
+
+    public void OnDash()
+    {
+        rb.AddForce(Camera.main.transform.forward * _dashSpeed, ForceMode.Impulse);
     }
 
     public void OnMenu()

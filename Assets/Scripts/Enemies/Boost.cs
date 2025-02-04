@@ -22,9 +22,14 @@ public class Boost : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<Rigidbody>().AddForce(new Vector3(0, boostForce, 0), ForceMode.Impulse);
-        pr = other.GetComponent<PlayerResources>();
-        pr.RefillAmmo();
-        Destroy(gameObject);
+        if(other.tag == "Player")
+        {
+            other.GetComponent<Rigidbody>().AddForce(new Vector3(0, boostForce, 0), ForceMode.Impulse);
+            other.GetComponent<HealthSystem>().ReceiveHealing(healing);
+            pr = other.GetComponent<PlayerResources>();
+            pr.RefillAmmo();
+            Destroy(gameObject);
+        }
+
     }
 }

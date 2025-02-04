@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, CanDie
 {
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _jumpSpeed;
@@ -101,5 +101,10 @@ public class PlayerController : MonoBehaviour
             Debug.DrawRay(transform.position, Vector3.up, Color.green, 10f);
 
         return output;
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player has died");
     }
 }

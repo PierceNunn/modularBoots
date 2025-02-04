@@ -25,6 +25,7 @@ public class ProjectileController : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * _projectileSpeed);
         ProjectileSpawner.GetComponent<Rigidbody>().AddForce(-gameObject.transform.forward * _projectileSpeed);
+        AudioManager.Instance.PlaySFX("Gun Shot");
     }
 
     public void ApplyModifiers(Queue<BasicStatModifier> mods)

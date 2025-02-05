@@ -401,7 +401,7 @@
                 {
                     "name": "",
                     "id": "1373993e-de4d-466b-8484-a2d0259a833f",
-                    "path": "<SwitchProControllerHID>/buttonEast",
+                    "path": "<SwitchProControllerHID>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -423,7 +423,7 @@
                 {
                     "name": "",
                     "id": "0cf02733-d429-432c-8f97-2cac6849152f",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<SwitchProControllerHID>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -445,7 +445,7 @@
                 {
                     "name": "",
                     "id": "63278986-f903-4967-bfa5-70636d9115aa",
-                    "path": "<SwitchProControllerHID>/buttonSouth",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

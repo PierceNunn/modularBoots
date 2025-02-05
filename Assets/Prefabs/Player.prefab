@@ -182,7 +182,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &7044355372156648873
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18d2d0a2debc474296120afe3251c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAmmo: 100
+  _maxAmmo: 150
 --- !u!136 &5718800746592675352
 CapsuleCollider:
   m_ObjectHideFlags: 0

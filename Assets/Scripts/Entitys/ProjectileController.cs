@@ -81,6 +81,15 @@ public class ProjectileController : MonoBehaviour
     [System.Obsolete]
     public void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject == _projectileSpawner)
+        {
+            
+        }
+        else if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<HealthSystem>().TakeDamage(_projectileDamage);
+        }
+        
         if(_destroyedOnCollision && !collision.gameObject.CompareTag("Projectile"))
         {
             try

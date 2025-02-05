@@ -4,14 +4,20 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, CanDie
 {
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _jumpSpeed;
+    [SerializeField] private float _dashSpeed;
+    [SerializeField] private float _stompDownwardForce;
+    [SerializeField] private float _dashCooldown;
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
     private Vector3 pointVector;
+    private Vector3 cameraRelevantMovementVector;
+    private Vector3 cameraRelevantRotateVector;
+    private float currentDashCooldown = 0f;
     private bool isFiring = false;
     private bool isMoving = false;
 
@@ -30,24 +36,11 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        Vector3 cameraForward = Camera.main.transform.forward;
-        Vector3 cameraRight = Camera.main.transform.right;
-        cameraForward.y = 0;
-        cameraRight.y = 0;
-        cameraForward.Normalize();
-        cameraRight.Normalize();
-
-        Vector3 newMovementZ = movementVector.z * cameraForward;
-        Vector3 newMovementX = movementVector.x * cameraRight;
-        Vector3 newRotationZ = rotateVector.z * cameraForward;
-        Vector3 newRotationX = rotateVector.x * cameraRight;
-
-        Vector3 cameraRelativeMovement = newMovementX + newMovementZ;
-        Vector3 cameraRelativeRotation = newRotationX + newRotationZ;
+        UpdateCameraRelevantVectors();
         //Debug.Log(movementVector);
 
-        rb.AddForce(cameraRelativeMovement * _movementSpeed); //make player move
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(cameraRelativeRotation), 0.5f);
+        rb.AddForce(cameraRelevantMovementVector * _movementSpeed); //make player move
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(cameraRelevantRotateVector), 0.5f);
         if (IsGrounded() && modsHandler.NoPendingCooldown)
             pr.RefillAmmo();
         if(isFiring)
@@ -61,12 +54,11 @@ public class PlayerController : MonoBehaviour
 
     void OnMove(InputValue movementValue)
     {
-        isMoving = !isMoving;
-        //Debug.Log(isMoving);
-
         //set movement direction to input
         movementVector = new Vector3(movementValue.Get<Vector2>().x, 0, movementValue.Get<Vector2>().y);
-        Debug.Log(movementVector);
+
+        isMoving = movementVector.magnitude > 0;
+        print(movementVector.magnitude);
     }
 
     void OnRotate(InputValue rotateValue)
@@ -79,14 +71,43 @@ public class PlayerController : MonoBehaviour
 
     void OnJump(InputValue rotateValue)
     {
-        if(IsGrounded())
+        if (IsGrounded())
+        {
             rb.AddForce(Vector3.up * _jumpSpeed);
+            AudioManager.Instance.PlaySFX("Jump");
+        }
     }
 
 
     public void OnFire(InputValue fireValue)
     {
         isFiring = fireValue.isPressed;
+    }
+
+    public void OnDash()
+    {
+        if(currentDashCooldown == 0f)
+        {
+            if (isMoving)
+                rb.AddForce(cameraRelevantMovementVector * _dashSpeed, ForceMode.Impulse);
+            else
+                rb.AddForce(Camera.main.transform.forward * _dashSpeed, ForceMode.Impulse);
+            StartCoroutine(DashCooldownCounter());
+        }
+        else
+        {
+            print("can't dash, still on cooldown");
+        }
+        
+    }
+
+    public void OnStomp()
+    {
+        if(!IsGrounded())
+        {
+            rb.velocity = Vector3.zero;
+            rb.AddForce(Vector3.down * _stompDownwardForce, ForceMode.Impulse);
+        }
     }
 
     public void OnMenu()
@@ -101,5 +122,39 @@ public class PlayerController : MonoBehaviour
             Debug.DrawRay(transform.position, Vector3.up, Color.green, 10f);
 
         return output;
+    }
+
+    private void UpdateCameraRelevantVectors()
+    {
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraRight = Camera.main.transform.right;
+        cameraForward.y = 0;
+        cameraRight.y = 0;
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        Vector3 newMovementZ = movementVector.z * cameraForward;
+        Vector3 newMovementX = movementVector.x * cameraRight;
+        Vector3 newRotationZ = rotateVector.z * cameraForward;
+        Vector3 newRotationX = rotateVector.x * cameraRight;
+
+        cameraRelevantMovementVector = newMovementX + newMovementZ;
+        cameraRelevantRotateVector = newRotationX + newRotationZ;
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player has died");
+    }
+
+    IEnumerator DashCooldownCounter()
+    {
+        currentDashCooldown = _dashCooldown;
+        while(currentDashCooldown >= 0f)
+        {
+            currentDashCooldown -= Time.deltaTime;
+            yield return null;
+        }
+        currentDashCooldown = 0f;
     }
 }

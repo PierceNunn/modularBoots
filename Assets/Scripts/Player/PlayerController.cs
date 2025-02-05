@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour, CanDie
     public void OnDash()
     {
         rb.AddForce(Camera.main.transform.forward * _dashSpeed, ForceMode.Impulse);
+        print("Dash");
     }
 
     public void OnMenu()

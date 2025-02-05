@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour, CanDie
     public void OnDash()
     {
         if(isMoving)
-            rb.AddForce(movementVector * _dashSpeed, ForceMode.Impulse);
+            rb.AddForce(cameraRelevantMovementVector * _dashSpeed, ForceMode.Impulse);
         else
             rb.AddForce(Camera.main.transform.forward * _dashSpeed, ForceMode.Impulse);
         print("Dash");

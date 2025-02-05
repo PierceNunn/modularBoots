@@ -16,4 +16,9 @@ abstract public class GenericMod : ScriptableObject
     public Sprite ModIcon { get => _modIcon; set => _modIcon = value; }
     public float AmmoCost { get => _ammoCost; set => _ammoCost = value; }
     public float Cooldown { get => _cooldown; set => _cooldown = value; }
+
+    public virtual string DetailedInfoString()
+    {
+        return "Ammo Cost: " + _ammoCost + "\nCooldown time: " + _cooldown;
+    }
 }

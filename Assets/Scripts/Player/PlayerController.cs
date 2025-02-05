@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour, CanDie
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
+    private Vector3 pointVector;
     private Vector3 cameraRelevantMovementVector;
     private Vector3 cameraRelevantRotateVector;
     private float currentDashCooldown = 0f;
@@ -44,6 +45,11 @@ public class PlayerController : MonoBehaviour, CanDie
             pr.RefillAmmo();
         if(isFiring)
             modsHandler.FireWeapon();
+    }
+
+    void OnPoint(InputValue pointValue)
+    {
+        pointVector = pointValue.Get<Vector2>();
     }
 
     void OnMove(InputValue movementValue)

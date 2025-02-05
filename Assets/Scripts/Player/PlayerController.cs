@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour, CanDie
     private PlayerModsHandler modsHandler;
     private PlayerResources pr;
 
+    public float CurrentDashCooldown { get => currentDashCooldown; set => currentDashCooldown = value; }
+
     public void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -86,8 +88,9 @@ public class PlayerController : MonoBehaviour, CanDie
 
     public void OnDash()
     {
-        if(currentDashCooldown == 0f)
+        if(CurrentDashCooldown == 0f)
         {
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             if (isMoving)
                 rb.AddForce(cameraRelevantMovementVector * _dashSpeed, ForceMode.Impulse);
             else
@@ -149,12 +152,12 @@ public class PlayerController : MonoBehaviour, CanDie
 
     IEnumerator DashCooldownCounter()
     {
-        currentDashCooldown = _dashCooldown;
-        while(currentDashCooldown >= 0f)
+        CurrentDashCooldown = _dashCooldown;
+        while(CurrentDashCooldown >= 0f)
         {
-            currentDashCooldown -= Time.deltaTime;
+            CurrentDashCooldown -= Time.deltaTime;
             yield return null;
         }
-        currentDashCooldown = 0f;
+        CurrentDashCooldown = 0f;
     }
 }

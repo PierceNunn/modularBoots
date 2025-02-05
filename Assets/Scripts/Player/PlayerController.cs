@@ -56,12 +56,11 @@ public class PlayerController : MonoBehaviour, CanDie
 
     void OnMove(InputValue movementValue)
     {
-        isMoving = !isMoving;
-        //Debug.Log(isMoving);
-
         //set movement direction to input
         movementVector = new Vector3(movementValue.Get<Vector2>().x, 0, movementValue.Get<Vector2>().y);
-        Debug.Log(movementVector);
+
+        isMoving = movementVector.magnitude > 0;
+        print(movementVector.magnitude);
     }
 
     void OnRotate(InputValue rotateValue)
@@ -89,7 +88,10 @@ public class PlayerController : MonoBehaviour, CanDie
 
     public void OnDash()
     {
-        rb.AddForce(Camera.main.transform.forward * _dashSpeed, ForceMode.Impulse);
+        if(isMoving)
+            rb.AddForce(movementVector * _dashSpeed, ForceMode.Impulse);
+        else
+            rb.AddForce(Camera.main.transform.forward * _dashSpeed, ForceMode.Impulse);
         print("Dash");
     }
 

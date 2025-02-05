@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour, CanDie
             pr.RefillAmmo();
         if(isFiring)
             modsHandler.FireWeapon();
+
+        rb.useGravity = !isDashing;
     }
 
     void OnPoint(InputValue pointValue)
@@ -85,6 +87,7 @@ public class PlayerController : MonoBehaviour, CanDie
 
     public void OnFire(InputValue fireValue)
     {
+        isDashing = false;
         isFiring = fireValue.isPressed;
     }
 

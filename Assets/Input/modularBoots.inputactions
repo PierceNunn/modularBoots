@@ -401,7 +401,7 @@
                 {
                     "name": "",
                     "id": "1373993e-de4d-466b-8484-a2d0259a833f",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<SwitchProControllerHID>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -423,7 +423,7 @@
                 {
                     "name": "",
                     "id": "0cf02733-d429-432c-8f97-2cac6849152f",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -435,6 +435,17 @@
                     "name": "",
                     "id": "96381035-4e9a-48cf-88a9-f0283e75d18e",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stomp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63278986-f903-4967-bfa5-70636d9115aa",
+                    "path": "<SwitchProControllerHID>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

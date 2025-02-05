@@ -27,7 +27,7 @@ public class ModDisplayController : MonoBehaviour
 
     }
 
-    public void Update()
+    public void LateUpdate()
     {
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Vector2 localMousePosition = rectTransform.InverseTransformPoint(mousePos);

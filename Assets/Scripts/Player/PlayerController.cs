@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour, CanDie
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _jumpSpeed;
     [SerializeField] private float _dashSpeed;
+    [SerializeField] private float _stompDownwardForce;
     [SerializeField] private float _dashCooldown;
 
     private Vector3 movementVector;
@@ -92,6 +93,15 @@ public class PlayerController : MonoBehaviour, CanDie
             print("can't dash, still on cooldown");
         }
         
+    }
+
+    public void OnStomp()
+    {
+        if(!IsGrounded())
+        {
+            rb.velocity = Vector3.zero;
+            rb.AddForce(Vector3.down * _stompDownwardForce, ForceMode.Impulse);
+        }
     }
 
     public void OnMenu()

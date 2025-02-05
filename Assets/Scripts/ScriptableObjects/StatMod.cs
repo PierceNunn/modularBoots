@@ -14,7 +14,7 @@ public class StatMod : GenericMod
         string output = "";
         foreach(BasicStatModifier s in StatModifiers)
         {
-            output = output + s.StatToModify + s.Operator + s.ModifierValue + "\n";
+            output = output + s.StatToModify + " " + s.Operator + " " + s.ModifierValue + "\n";
         }
         return output + base.DetailedInfoString();
     }

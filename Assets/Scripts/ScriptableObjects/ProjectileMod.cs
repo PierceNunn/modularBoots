@@ -17,6 +17,6 @@ public class ProjectileMod : GenericMod
             ProjectileController p = g.GetComponent<ProjectileController>();
             output = output + "Projectile Speed: " + p.ProjectileSpeed + "\n Projectile Damage: " + p.ProjectileSpeed;
         }
-        return output + base.DetailedInfoString();
+        return output + "\n" + base.DetailedInfoString();
     }
 }

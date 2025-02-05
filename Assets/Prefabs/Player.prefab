@@ -136,6 +136,7 @@ MonoBehaviour:
   _movementSpeed: 5
   _jumpSpeed: 100
   _dashSpeed: 4
+  _dashCooldown: 5
 --- !u!114 &410270526984572636
 MonoBehaviour:
   m_ObjectHideFlags: 0

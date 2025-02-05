@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour, CanDie
     [SerializeField] private float _dashSpeed;
     [SerializeField] private float _stompDownwardForce;
     [SerializeField] private float _dashCooldown;
+    [SerializeField] private float _dashDuration;
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour, CanDie
     private float currentDashCooldown = 0f;
     private bool isFiring = false;
     private bool isMoving = false;
+    private bool isDashing = false;
 
     private Rigidbody rb;
     private Collider cr;
@@ -153,9 +155,12 @@ public class PlayerController : MonoBehaviour, CanDie
     IEnumerator DashCooldownCounter()
     {
         CurrentDashCooldown = _dashCooldown;
+        isDashing = true;
         while(CurrentDashCooldown >= 0f)
         {
             CurrentDashCooldown -= Time.deltaTime;
+            if(_dashCooldown - currentDashCooldown > _dashDuration)
+                isDashing = false;
             yield return null;
         }
         CurrentDashCooldown = 0f;

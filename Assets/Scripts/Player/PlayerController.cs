@@ -9,11 +9,13 @@ public class PlayerController : MonoBehaviour, CanDie
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _jumpSpeed;
     [SerializeField] private float _dashSpeed;
+    [SerializeField] private float _dashCooldown;
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
     private Vector3 cameraRelevantMovementVector;
     private Vector3 cameraRelevantRotateVector;
+    private float currentDashCooldown = 0f;
     private bool isFiring = false;
     private bool isMoving = false;
 
@@ -77,11 +79,19 @@ public class PlayerController : MonoBehaviour, CanDie
 
     public void OnDash()
     {
-        if(isMoving)
-            rb.AddForce(cameraRelevantMovementVector * _dashSpeed, ForceMode.Impulse);
+        if(currentDashCooldown == 0f)
+        {
+            if (isMoving)
+                rb.AddForce(cameraRelevantMovementVector * _dashSpeed, ForceMode.Impulse);
+            else
+                rb.AddForce(Camera.main.transform.forward * _dashSpeed, ForceMode.Impulse);
+            StartCoroutine(DashCooldownCounter());
+        }
         else
-            rb.AddForce(Camera.main.transform.forward * _dashSpeed, ForceMode.Impulse);
-        print("Dash");
+        {
+            print("can't dash, still on cooldown");
+        }
+        
     }
 
     public void OnMenu()
@@ -119,5 +129,16 @@ public class PlayerController : MonoBehaviour, CanDie
     public void Die()
     {
         Debug.Log("Player has died");
+    }
+
+    IEnumerator DashCooldownCounter()
+    {
+        currentDashCooldown = _dashCooldown;
+        while(currentDashCooldown >= 0f)
+        {
+            currentDashCooldown -= Time.deltaTime;
+            yield return null;
+        }
+        currentDashCooldown = 0f;
     }
 }

@@ -33,7 +33,15 @@ public class ModDisplayController : MonoBehaviour
         Vector2 localMousePosition = rectTransform.InverseTransformPoint(mousePos);
         if (rectTransform.rect.Contains(localMousePosition))
         {
-            print(true);
+            try
+            {
+                FindObjectOfType<ExtraInfoWindow>().gameObject.GetComponent<RectTransform>().position = gameObject.GetComponent<RectTransform>().position;
+            }
+            catch
+            {
+                Debug.LogWarning("ExtraInfoWindow either doesn't exist or is missing a RectTransform");
+            }
+            
         }
     }
     public void UpdateDisplayInfo()

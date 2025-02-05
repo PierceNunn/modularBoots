@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour, CanDie
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
+    private Vector3 cameraRelevantMovementVector;
+    private Vector3 cameraRelevantRotateVector;
     private bool isFiring = false;
     private bool isMoving = false;
 
@@ -30,24 +32,11 @@ public class PlayerController : MonoBehaviour, CanDie
 
     public void FixedUpdate()
     {
-        Vector3 cameraForward = Camera.main.transform.forward;
-        Vector3 cameraRight = Camera.main.transform.right;
-        cameraForward.y = 0;
-        cameraRight.y = 0;
-        cameraForward.Normalize();
-        cameraRight.Normalize();
-
-        Vector3 newMovementZ = movementVector.z * cameraForward;
-        Vector3 newMovementX = movementVector.x * cameraRight;
-        Vector3 newRotationZ = rotateVector.z * cameraForward;
-        Vector3 newRotationX = rotateVector.x * cameraRight;
-
-        Vector3 cameraRelativeMovement = newMovementX + newMovementZ;
-        Vector3 cameraRelativeRotation = newRotationX + newRotationZ;
+        UpdateCameraRelevantVectors();
         //Debug.Log(movementVector);
 
-        rb.AddForce(cameraRelativeMovement * _movementSpeed); //make player move
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(cameraRelativeRotation), 0.5f);
+        rb.AddForce(cameraRelevantMovementVector * _movementSpeed); //make player move
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(cameraRelevantRotateVector), 0.5f);
         if (IsGrounded() && modsHandler.NoPendingCooldown)
             pr.RefillAmmo();
         if(isFiring)
@@ -107,6 +96,24 @@ public class PlayerController : MonoBehaviour, CanDie
             Debug.DrawRay(transform.position, Vector3.up, Color.green, 10f);
 
         return output;
+    }
+
+    private void UpdateCameraRelevantVectors()
+    {
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraRight = Camera.main.transform.right;
+        cameraForward.y = 0;
+        cameraRight.y = 0;
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        Vector3 newMovementZ = movementVector.z * cameraForward;
+        Vector3 newMovementX = movementVector.x * cameraRight;
+        Vector3 newRotationZ = rotateVector.z * cameraForward;
+        Vector3 newRotationX = rotateVector.x * cameraRight;
+
+        cameraRelevantMovementVector = newMovementX + newMovementZ;
+        cameraRelevantRotateVector = newRotationX + newRotationZ;
     }
 
     public void Die()

@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class ExtraInfoWindow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private TextMeshProUGUI _infoText;
+    public void UpdateInfoDisplay(string newInfo)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _infoText.text = newInfo;
     }
 }

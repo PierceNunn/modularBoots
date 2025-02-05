@@ -36,6 +36,7 @@ public class ModDisplayController : MonoBehaviour
             try
             {
                 FindObjectOfType<ExtraInfoWindow>().gameObject.GetComponent<RectTransform>().position = gameObject.GetComponent<RectTransform>().position;
+                FindObjectOfType<ExtraInfoWindow>().UpdateInfoDisplay(_modToDisplay.DetailedInfoString());
             }
             catch
             {

@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour, CanDie
         cr = gameObject.GetComponent<Collider>();
         modsHandler = gameObject.GetComponent<PlayerModsHandler>();
         pr = gameObject.GetComponent<PlayerResources>();
+
+        if (_dashDuration > _dashCooldown)
+            Debug.LogWarning("Dash duration is longer than cooldown. dashing will not be flagged as complete properly.");
     }
 
     public void FixedUpdate()

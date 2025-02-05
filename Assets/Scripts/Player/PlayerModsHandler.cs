@@ -9,16 +9,30 @@ public class PlayerModsHandler : MonoBehaviour
 
     private bool noPendingCooldown = true;
     private float remainingCooldown = 0f;
+    private int[] modGroups;
     private PlayerResources pr;
 
 
     public GenericMod[] ModLayout { get => _modLayout; set => _modLayout = value; }
     public bool NoPendingCooldown { get => noPendingCooldown; set => noPendingCooldown = value; }
     public float RemainingCooldown { get => remainingCooldown; set => remainingCooldown = value; }
+    public int[] ModGroups { get => modGroups; set => modGroups = value; }
 
     public void Start()
     {
         pr = gameObject.GetComponent<PlayerResources>();
+    }
+
+    public void UpdateModGroups()
+    {
+        ModGroups = new int[_modLayout.Length];
+        int currentGroup = 0;
+        for(int i = 0; i < ModGroups.Length; i++)
+        {
+            ModGroups[i] = currentGroup;
+            if (_modLayout[i].GetType() == typeof(ProjectileMod))
+                currentGroup++;
+        }
     }
 
     public void FireWeapon()

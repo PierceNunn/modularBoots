@@ -10,6 +10,7 @@ public class GunModManagerUI : MonoBehaviour
     [SerializeField] private GenericMod[] _availableMods;
     [SerializeField] private Button[] _modButtons;
     [SerializeField] private Image[] _currentMods;
+    [SerializeField] private Image[] _groupingImages;
     [SerializeField] private GameObject _content;
 
     private PlayerModsHandler modsHandler;
@@ -56,6 +57,7 @@ public class GunModManagerUI : MonoBehaviour
                 _currentMods[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(modsHandler.ModLayout[i]);
             }
         }
+        _groupingImages[0].GetComponent<RectTransform>().anchoredPosition = _currentMods[0].GetComponent<RectTransform>().anchoredPosition;
     }
 
     private void UpdateAvailableModButtons()

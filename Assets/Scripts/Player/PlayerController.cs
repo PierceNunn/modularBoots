@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour, CanDie
     private PlayerResources pr;
 
     public float CurrentDashCooldown { get => currentDashCooldown; set => currentDashCooldown = value; }
+    public bool IsDashing { get => isDashing; set => isDashing = value; }
 
     public void Start()
     {
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour, CanDie
         if(isFiring)
             modsHandler.FireWeapon();
 
-        rb.useGravity = !isDashing;
+        rb.useGravity = !IsDashing;
     }
 
     void OnPoint(InputValue pointValue)
@@ -87,7 +88,7 @@ public class PlayerController : MonoBehaviour, CanDie
 
     public void OnFire(InputValue fireValue)
     {
-        isDashing = false;
+        IsDashing = false;
         isFiring = fireValue.isPressed;
     }
 
@@ -158,12 +159,12 @@ public class PlayerController : MonoBehaviour, CanDie
     IEnumerator DashCooldownCounter()
     {
         CurrentDashCooldown = _dashCooldown;
-        isDashing = true;
+        IsDashing = true;
         while(CurrentDashCooldown >= 0f)
         {
             CurrentDashCooldown -= Time.deltaTime;
             if(_dashCooldown - currentDashCooldown > _dashDuration)
-                isDashing = false;
+                IsDashing = false;
             yield return null;
         }
         CurrentDashCooldown = 0f;

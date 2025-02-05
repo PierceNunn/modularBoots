@@ -22,6 +22,6 @@ public class DebugManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _debugText.text = "Current Ammo: " + pr.CurrentAmmo + "/" + pr.MaxAmmo + "\n Cooldown remaining: " + pmh.RemainingCooldown + "\nDash cooldown left: " + pc.CurrentDashCooldown;
+        _debugText.text = "Current Ammo: " + pr.CurrentAmmo + "/" + pr.MaxAmmo + "\n Cooldown remaining: " + pmh.RemainingCooldown + "\nDash cooldown left: " + pc.CurrentDashCooldown + "\n is dashing: " + pc.IsDashing;
     }
 }

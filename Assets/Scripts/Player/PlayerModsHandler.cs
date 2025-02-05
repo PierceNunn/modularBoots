@@ -46,6 +46,7 @@ public class PlayerModsHandler : MonoBehaviour
                         print("cannot fire, not enough ammo");
                         return;
                     }
+                    accumulatedAmmoCost = 0;
 
                     StopAllCoroutines();
                     StartCoroutine(WeaponCooldownTimer(accumulatedCooldown));

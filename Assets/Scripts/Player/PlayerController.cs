@@ -11,19 +11,25 @@ public class PlayerController : MonoBehaviour, CanDie
     [SerializeField] private float _dashSpeed;
     [SerializeField] private float _stompDownwardForce;
     [SerializeField] private float _dashCooldown;
+    [SerializeField] private float _dashDuration;
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
+    private Vector3 pointVector;
     private Vector3 cameraRelevantMovementVector;
     private Vector3 cameraRelevantRotateVector;
     private float currentDashCooldown = 0f;
     private bool isFiring = false;
     private bool isMoving = false;
+    private bool isDashing = false;
 
     private Rigidbody rb;
     private Collider cr;
     private PlayerModsHandler modsHandler;
     private PlayerResources pr;
+
+    public float CurrentDashCooldown { get => currentDashCooldown; set => currentDashCooldown = value; }
+    public bool IsDashing { get => isDashing; set => isDashing = value; }
 
     public void Start()
     {
@@ -31,6 +37,9 @@ public class PlayerController : MonoBehaviour, CanDie
         cr = gameObject.GetComponent<Collider>();
         modsHandler = gameObject.GetComponent<PlayerModsHandler>();
         pr = gameObject.GetComponent<PlayerResources>();
+
+        if (_dashDuration > _dashCooldown)
+            Debug.LogWarning("Dash duration is longer than cooldown. dashing will not be flagged as complete properly.");
     }
 
     public void FixedUpdate()
@@ -44,6 +53,13 @@ public class PlayerController : MonoBehaviour, CanDie
             pr.RefillAmmo();
         if(isFiring)
             modsHandler.FireWeapon();
+
+        rb.useGravity = !IsDashing;
+    }
+
+    void OnPoint(InputValue pointValue)
+    {
+        pointVector = pointValue.Get<Vector2>();
     }
 
     void OnMove(InputValue movementValue)
@@ -75,13 +91,15 @@ public class PlayerController : MonoBehaviour, CanDie
 
     public void OnFire(InputValue fireValue)
     {
+        IsDashing = false;
         isFiring = fireValue.isPressed;
     }
 
     public void OnDash()
     {
-        if(currentDashCooldown == 0f)
+        if(CurrentDashCooldown == 0f)
         {
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             if (isMoving)
                 rb.AddForce(cameraRelevantMovementVector * _dashSpeed, ForceMode.Impulse);
             else
@@ -143,12 +161,15 @@ public class PlayerController : MonoBehaviour, CanDie
 
     IEnumerator DashCooldownCounter()
     {
-        currentDashCooldown = _dashCooldown;
-        while(currentDashCooldown >= 0f)
+        CurrentDashCooldown = _dashCooldown;
+        IsDashing = true;
+        while(CurrentDashCooldown >= 0f)
         {
-            currentDashCooldown -= Time.deltaTime;
+            CurrentDashCooldown -= Time.deltaTime;
+            if(_dashCooldown - currentDashCooldown > _dashDuration)
+                IsDashing = false;
             yield return null;
         }
-        currentDashCooldown = 0f;
+        CurrentDashCooldown = 0f;
     }
 }

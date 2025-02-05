@@ -14,6 +14,7 @@ public class EnemyBehavior : MonoBehaviour, CanDie
     public void Start()
     {
         isAggro = false;
+        target = FindObjectOfType<PlayerController>().transform;
         StartCoroutine(AggroCheck());
     }
 
@@ -26,7 +27,7 @@ public class EnemyBehavior : MonoBehaviour, CanDie
     public void Die()
     {
         Debug.Log("enemy died");
-        Instantiate(boost);
+        Instantiate(boost, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

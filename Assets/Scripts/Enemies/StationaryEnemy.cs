@@ -24,10 +24,10 @@ public class StationaryEnemy : EnemyBehavior
 
     public void ShootAtTarget()
     {
-        Debug.Log("shot at target");
-        Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
-        projectile.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
-        projectile.GetComponent<ProjectileController>().Fire();
+        //Debug.Log("shot at target");
+        GameObject proj = Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+        proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
+        proj.GetComponent<ProjectileController>().Fire();
 
     }
 

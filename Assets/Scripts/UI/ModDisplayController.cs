@@ -31,7 +31,7 @@ public class ModDisplayController : MonoBehaviour
     {
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Vector2 localMousePosition = rectTransform.InverseTransformPoint(mousePos);
-        if (rectTransform.rect.Contains(localMousePosition))
+        if (rectTransform.rect.Contains(localMousePosition) && _modToDisplay != null)
         {
             try
             {

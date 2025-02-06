@@ -110,8 +110,9 @@ public class GunModManagerUI : MonoBehaviour
                 currentGroup++;
                 groupImages.Add(Instantiate(_groupingImages[0]).GetComponent<RectTransform>());
                 groupImages[currentGroup].transform.SetParent(_content.transform, false);
+                groupImages[currentGroup].transform.SetAsFirstSibling();
                 groupImages[currentGroup].anchoredPosition = _currentMods[i].GetComponent<RectTransform>().anchoredPosition - new Vector2(_currentMods[i].GetComponent<RectTransform>().sizeDelta.x / 2, 0f);
-                groupImages[currentGroup].sizeDelta = new Vector2(0, _groupHeight);
+                groupImages[currentGroup].sizeDelta = new Vector2(_groupWidthPerMod, _groupHeight);
                 groupImages[currentGroup].localScale = _currentMods[i].GetComponent<RectTransform>().localScale;
 
                 groupImages[currentGroup].gameObject.GetComponent<Image>().color = currentGroup % 2 == 0 ? Color.blue : Color.green;

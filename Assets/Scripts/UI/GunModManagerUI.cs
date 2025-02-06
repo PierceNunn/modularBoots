@@ -16,6 +16,8 @@ public class GunModManagerUI : MonoBehaviour
     [SerializeField] private float _groupHeight;
     [SerializeField] private float _groupWidthPerMod;
 
+    private List<RectTransform> groupImages = new List<RectTransform>();
+
     private PlayerModsHandler modsHandler;
 
     public void Start()
@@ -45,6 +47,7 @@ public class GunModManagerUI : MonoBehaviour
     {
         UpdateAvailableModButtons();
         UpdateCurrentModsDisplay();
+        UpdateGroups();
     }
 
     private void UpdateCurrentModsDisplay()
@@ -62,19 +65,7 @@ public class GunModManagerUI : MonoBehaviour
         }
         modsHandler.UpdateModGroups();
         
-        RectTransform groupRect = Instantiate(_groupingImages[0]).GetComponent<RectTransform>();
-        groupRect.transform.SetParent(_content.transform, false);
-        groupRect.anchoredPosition = _currentMods[0].GetComponent<RectTransform>().anchoredPosition - new Vector2(_currentMods[0].GetComponent<RectTransform>().sizeDelta.x / 2, 0f);
-        groupRect.sizeDelta = new Vector2(0, _groupHeight);
-        groupRect.localScale = _currentMods[0].GetComponent<RectTransform>().localScale;
-        foreach (int i in modsHandler.ModGroups)
-        {
-            if(i == 0)
-            {
-                groupRect.sizeDelta = new Vector2(groupRect.sizeDelta.x + _groupWidthPerMod, groupRect.sizeDelta.y);
-            }
-
-        }
+        
     }
 
     private void UpdateAvailableModButtons()
@@ -90,6 +81,44 @@ public class GunModManagerUI : MonoBehaviour
                 _modButtons[i].gameObject.SetActive(true);
                 _modButtons[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(_availableMods[i]);
             }
+        }
+    }
+
+    private void UpdateGroups()
+    {
+        foreach (RectTransform r in groupImages)
+            Destroy(r.gameObject);
+        groupImages = new List<RectTransform>();
+
+        if (modsHandler.ModLayout[0] == null)
+        {
+            return;
+        }
+
+        int currentGroup = -1;
+        for (int i = 0; i < modsHandler.ModGroups.Length; i++)
+        {
+            if (modsHandler.ModLayout[i] == null)
+                return;
+
+            if (modsHandler.ModGroups[i] == currentGroup)
+            {
+                groupImages[currentGroup].sizeDelta = new Vector2(groupImages[currentGroup].sizeDelta.x + _groupWidthPerMod, groupImages[currentGroup].sizeDelta.y);
+            }
+            else
+            {
+                currentGroup++;
+                groupImages.Add(Instantiate(_groupingImages[0]).GetComponent<RectTransform>());
+                groupImages[currentGroup].transform.SetParent(_content.transform, false);
+                groupImages[currentGroup].anchoredPosition = _currentMods[i].GetComponent<RectTransform>().anchoredPosition - new Vector2(_currentMods[i].GetComponent<RectTransform>().sizeDelta.x / 2, 0f);
+                groupImages[currentGroup].sizeDelta = new Vector2(0, _groupHeight);
+                groupImages[currentGroup].localScale = _currentMods[i].GetComponent<RectTransform>().localScale;
+
+                groupImages[currentGroup].gameObject.GetComponent<Image>().color = currentGroup % 2 == 0 ? Color.blue : Color.green;
+
+
+            }
+
         }
     }
 

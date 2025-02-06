@@ -10,7 +10,7 @@ public class GunModManagerUI : MonoBehaviour
     [SerializeField] private GenericMod[] _availableMods;
     [SerializeField] private Button[] _modButtons;
     [SerializeField] private Image[] _currentMods;
-    [SerializeField] private Image[] _groupingImages;
+    [SerializeField] private GameObject[] _groupingImages;
     [SerializeField] private GameObject _content;
 
     [SerializeField] private float _groupHeight;
@@ -62,7 +62,8 @@ public class GunModManagerUI : MonoBehaviour
         }
         modsHandler.UpdateModGroups();
         
-        RectTransform groupRect = _groupingImages[0].GetComponent<RectTransform>();
+        RectTransform groupRect = Instantiate(_groupingImages[0]).GetComponent<RectTransform>();
+        groupRect.transform.SetParent(_content.transform, false);
         groupRect.anchoredPosition = _currentMods[0].GetComponent<RectTransform>().anchoredPosition - new Vector2(_currentMods[0].GetComponent<RectTransform>().sizeDelta.x / 2, 0f);
         groupRect.sizeDelta = new Vector2(0, _groupHeight);
         groupRect.localScale = _currentMods[0].GetComponent<RectTransform>().localScale;

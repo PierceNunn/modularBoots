@@ -30,7 +30,7 @@ public class PlayerModsHandler : MonoBehaviour
         for(int i = 0; i < ModGroups.Length; i++)
         {
             ModGroups[i] = currentGroup;
-            if (_modLayout[i].GetType() == typeof(ProjectileMod))
+            if (_modLayout[i] != null && _modLayout[i].GetType() == typeof(ProjectileMod))
                 currentGroup++;
         }
     }

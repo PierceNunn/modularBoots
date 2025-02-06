@@ -57,7 +57,15 @@ public class GunModManagerUI : MonoBehaviour
                 _currentMods[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(modsHandler.ModLayout[i]);
             }
         }
-        _groupingImages[0].GetComponent<RectTransform>().anchoredPosition = _currentMods[0].GetComponent<RectTransform>().anchoredPosition;
+        modsHandler.UpdateModGroups();
+        RectTransform groupRect = _groupingImages[0].GetComponent<RectTransform>();
+        groupRect.anchoredPosition = _currentMods[0].GetComponent<RectTransform>().anchoredPosition;
+        groupRect.sizeDelta = _currentMods[0].GetComponent<RectTransform>().sizeDelta;
+        foreach (int i in modsHandler.ModGroups)
+        {
+            //if(i == 0)
+
+        }
     }
 
     private void UpdateAvailableModButtons()

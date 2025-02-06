@@ -704,6 +704,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ModUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4724042663811092459, guid: bec574a44c28ac146bc1de0cd6eb8107, type: 3}
+      propertyPath: _groupWidthPerMod
+      value: 117
+      objectReference: {fileID: 0}
     - target: {fileID: 8679908152310282371, guid: bec574a44c28ac146bc1de0cd6eb8107, type: 3}
       propertyPath: m_Pivot.x
       value: 0

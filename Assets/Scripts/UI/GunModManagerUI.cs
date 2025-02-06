@@ -13,6 +13,9 @@ public class GunModManagerUI : MonoBehaviour
     [SerializeField] private Image[] _groupingImages;
     [SerializeField] private GameObject _content;
 
+    [SerializeField] private float _groupHeight;
+    [SerializeField] private float _groupWidthPerMod;
+
     private PlayerModsHandler modsHandler;
 
     public void Start()
@@ -58,12 +61,17 @@ public class GunModManagerUI : MonoBehaviour
             }
         }
         modsHandler.UpdateModGroups();
+        
         RectTransform groupRect = _groupingImages[0].GetComponent<RectTransform>();
-        groupRect.anchoredPosition = _currentMods[0].GetComponent<RectTransform>().anchoredPosition;
-        groupRect.sizeDelta = _currentMods[0].GetComponent<RectTransform>().sizeDelta;
+        groupRect.anchoredPosition = _currentMods[0].GetComponent<RectTransform>().anchoredPosition - new Vector2(_currentMods[0].GetComponent<RectTransform>().sizeDelta.x / 2, 0f);
+        groupRect.sizeDelta = new Vector2(0, _groupHeight);
+        groupRect.localScale = _currentMods[0].GetComponent<RectTransform>().localScale;
         foreach (int i in modsHandler.ModGroups)
         {
-            //if(i == 0)
+            if(i == 0)
+            {
+                groupRect.sizeDelta = new Vector2(groupRect.sizeDelta.x + _groupWidthPerMod, groupRect.sizeDelta.y);
+            }
 
         }
     }

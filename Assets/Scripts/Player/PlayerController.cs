@@ -139,6 +139,7 @@ public class PlayerController : MonoBehaviour, CanDie
     public void Die()
     {
         Debug.Log("Player has died");
+        FindObjectOfType<DeathScreen>().ShowDeathScreen();
     }
 
     IEnumerator DashCooldownCounter()

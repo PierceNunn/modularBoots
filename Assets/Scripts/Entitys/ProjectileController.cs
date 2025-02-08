@@ -13,6 +13,9 @@ public class ProjectileController : MonoBehaviour
     private GameObject _projectileSpawner;
 
     public GameObject ProjectileSpawner { get => _projectileSpawner; set => _projectileSpawner = value; }
+    public Enums.projectileBehaviors ProjectileBehavior { get => _projectileBehavior; set => _projectileBehavior = value; }
+    public float ProjectileDamage { get => _projectileDamage; set => _projectileDamage = value; }
+    public float ProjectileSpeed { get => _projectileSpeed; set => _projectileSpeed = value; }
 
     delegate float modifierDelegate(float modifiedVar, float modValue);
 
@@ -63,10 +66,10 @@ public class ProjectileController : MonoBehaviour
         switch(mod.StatToModify)
         {
             case Enums.modifiableStats.speed:
-                _projectileSpeed = modDeg(_projectileSpeed, mod.ModifierValue);
+                ProjectileSpeed = modDeg(ProjectileSpeed, mod.ModifierValue);
                 break;
             case Enums.modifiableStats.damage:
-                _projectileDamage = modDeg(_projectileDamage, mod.ModifierValue);
+                ProjectileDamage = modDeg(ProjectileDamage, mod.ModifierValue);
                 break;
             case Enums.modifiableStats.cooldown:
                 FindObjectOfType<PlayerModsHandler>().RemainingCooldown = modDeg(FindObjectOfType<PlayerModsHandler>().RemainingCooldown, mod.ModifierValue);
@@ -94,7 +97,7 @@ public class ProjectileController : MonoBehaviour
         {
             try
             {
-                Instantiate(_impactParticles, transform.position, transform.rotation).GetComponent<ParticleSystem>().startSpeed = _projectileSpeed / 5;
+                Instantiate(_impactParticles, transform.position, transform.rotation).GetComponent<ParticleSystem>().startSpeed = ProjectileSpeed / 5;
             }
             catch
             {

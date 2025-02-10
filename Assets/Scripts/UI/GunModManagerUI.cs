@@ -129,6 +129,12 @@ public class GunModManagerUI : MonoBehaviour
         UpdateModDisplay();
     }
 
+    public void RemoveMod(int arrayPos)
+    {
+        modsHandler.RemoveModFromLoadout(arrayPos);
+        UpdateModDisplay();
+    }
+
     public void ClearMods()
     {
         modsHandler.ClearMods();

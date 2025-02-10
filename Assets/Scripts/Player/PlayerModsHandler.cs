@@ -115,6 +115,24 @@ public class PlayerModsHandler : MonoBehaviour
         return false;
     }
 
+    public bool RemoveModFromLoadout(int index)
+    {
+        GenericMod[] temp = new GenericMod[_modLayout.Length];
+
+        if (index >= _modLayout.Length || _modLayout[index] == null)
+            return false;
+
+        for(int i = 0; i < _modLayout.Length - 1; i++)
+        {
+            if (i >= index)
+                temp[i] = _modLayout[i + 1];
+            else
+                temp[i] = _modLayout[i];
+        }
+        _modLayout = temp;
+        return true;
+    }
+
     public void ClearMods()
     {
         for (int i = 0; i < _modLayout.Length; i++)

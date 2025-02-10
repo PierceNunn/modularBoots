@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour, CanDie
     {
         if(CurrentDashCooldown == 0f)
         {
+            AudioManager.Instance.PlaySFX("Dash");
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             if (isMoving)
                 rb.AddForce(cameraRelevantMovementVector * _dashSpeed, ForceMode.Impulse);

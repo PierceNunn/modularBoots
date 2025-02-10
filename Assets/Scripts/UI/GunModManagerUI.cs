@@ -52,15 +52,18 @@ public class GunModManagerUI : MonoBehaviour
 
     private void UpdateCurrentModsDisplay()
     {
+        int lastBulletIndex = modsHandler.GetLastBulletModIndex();
         for(int i = 0; i < _currentMods.Length; i++)
         {
             if(modsHandler.ModLayout[i] == null)
             {
                 _currentMods[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(null);
+                _currentMods[i].color = Color.white;
             }
             else
             {
                 _currentMods[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(modsHandler.ModLayout[i]);
+                _currentMods[i].color = i > lastBulletIndex ? Color.red : Color.white;
             }
         }
         modsHandler.UpdateModGroups();

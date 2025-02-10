@@ -164,6 +164,17 @@ public class PlayerModsHandler : MonoBehaviour
         }
     }
 
+    public int GetLastBulletModIndex()
+    {
+        for(int i = _modLayout.Length - 1; i >= 0; i--)
+        {
+            if (_modLayout[i] != null &&  _modLayout[i].GetType() == typeof(ProjectileMod))
+                return i;
+        }
+
+        return -1;
+    }
+
     public IEnumerator WeaponCooldownTimer(float cooldownTime)
     {
         NoPendingCooldown = false;

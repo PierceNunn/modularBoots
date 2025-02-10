@@ -30,6 +30,7 @@ public class HealthSystem : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0) 
         {
+            AudioManager.Instance.PlaySFX("Enemy Death");
             entityController.Die();
         }
     }

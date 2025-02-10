@@ -29,6 +29,7 @@ public class PlayerResources : MonoBehaviour
 
     public void RefillAmmo()
     {
+        AudioManager.Instance.PlaySFX("Reload");
         currentAmmo = _maxAmmo;
     }
 }

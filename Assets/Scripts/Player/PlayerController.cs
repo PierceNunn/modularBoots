@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour, CanDie
 
         rb.AddForce(cameraRelevantMovementVector * _movementSpeed); //make player move
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(cameraRelevantRotateVector), 0.5f);
-        if (IsGrounded() && modsHandler.NoPendingCooldown)
+        if (IsGrounded() && modsHandler.NoPendingCooldown && pr.CurrentAmmo != pr.MaxAmmo)
             pr.RefillAmmo();
         if(isFiring)
             modsHandler.FireWeapon();

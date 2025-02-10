@@ -100,19 +100,42 @@ public class PlayerModsHandler : MonoBehaviour
         
     }
 
-    public bool AddModToLoadout(GenericMod mod)
+    public bool AddModToLoadout(GenericMod mod, bool addInReverse = false)
     {
-        for(int i = 0; i < _modLayout.Length; i++)
+        if(!addInReverse)
         {
-            if(_modLayout[i] == null)
+            //this was the original code for adding a mod, leaving in just in case
+            for (int i = 0; i < _modLayout.Length; i++)
             {
-                _modLayout[i] = mod;
-                print("added mod in position" + i);
-                return true;
+                if (_modLayout[i] == null)
+                {
+                    _modLayout[i] = mod;
+                    print("added mod in position" + i);
+                    return true;
+                }
             }
+            print("failed to add mod");
+            return false;
         }
-        print("failed to add mod");
-        return false;
+        else
+        {
+            if(_modLayout[_modLayout.Length - 1] != null)
+            {
+                Debug.LogWarning("Can't add mod, layout is full");
+                return false;
+            }
+            
+            GenericMod[] temp = new GenericMod[_modLayout.Length];
+
+            temp[0] = mod;
+            for(int i = 1; i < temp.Length; i++)
+            {
+                temp[i] = _modLayout[i - 1];
+            }
+            _modLayout = temp;
+            return true;
+        }
+        
     }
 
     public bool RemoveModFromLoadout(int index)

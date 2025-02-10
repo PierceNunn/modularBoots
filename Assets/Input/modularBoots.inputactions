@@ -368,7 +368,18 @@
                 {
                     "name": "",
                     "id": "9e6e9fa8-f99c-4078-9dda-45280301424e",
-                    "path": "<Keyboard>/numpad5",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5d2622c-2d6e-412c-9e34-deb89205d2e1",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -401,7 +412,7 @@
                 {
                     "name": "",
                     "id": "1373993e-de4d-466b-8484-a2d0259a833f",
-                    "path": "<SwitchProControllerHID>/buttonSouth",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -423,7 +434,7 @@
                 {
                     "name": "",
                     "id": "0cf02733-d429-432c-8f97-2cac6849152f",
-                    "path": "<SwitchProControllerHID>/buttonEast",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

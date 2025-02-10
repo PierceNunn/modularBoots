@@ -935,7 +935,7 @@ GameObject:
   - component: {fileID: 1494225805}
   - component: {fileID: 1494225804}
   m_Layer: 5
-  m_Name: HowToPlay (2)
+  m_Name: Keyboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -993,8 +993,7 @@ MonoBehaviour:
 
     L Shift
 
-    Numpad
-    5'
+    Esc/Tab'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1878,7 +1877,7 @@ GameObject:
   - component: {fileID: 1753293079}
   - component: {fileID: 1753293078}
   m_Layer: 5
-  m_Name: HowToPlay (1)
+  m_Name: Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

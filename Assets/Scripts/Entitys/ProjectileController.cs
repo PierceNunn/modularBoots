@@ -102,6 +102,10 @@ public class ProjectileController : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
+            if(collision.gameObject.CompareTag("Player"))
+            {
+                AudioManager.Instance.PlaySFX("Take Damage");
+            }
             collision.gameObject.GetComponent<HealthSystem>().TakeDamage(_projectileDamage);
         }
         

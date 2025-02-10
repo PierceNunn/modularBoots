@@ -19,4 +19,9 @@ public class ProjectileMod : GenericMod
         }
         return output + "\n" + base.DetailedInfoString();
     }
+
+    public string DetailedPostModInfoString(Queue<BasicStatModifier> mods)
+    {
+        return "null";
+    }
 }

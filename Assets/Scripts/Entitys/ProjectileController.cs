@@ -12,6 +12,8 @@ public class ProjectileController : MonoBehaviour
 
     private GameObject _projectileSpawner;
 
+    private Rigidbody parentRB;
+
     public GameObject ProjectileSpawner { get => _projectileSpawner; set => _projectileSpawner = value; }
     public Enums.projectileBehaviors ProjectileBehavior { get => _projectileBehavior; set => _projectileBehavior = value; }
     public float ProjectileDamage { get => _projectileDamage; set => _projectileDamage = value; }
@@ -26,8 +28,18 @@ public class ProjectileController : MonoBehaviour
 
     public void Fire()
     {
+        parentRB = ProjectileSpawner.GetComponent<Rigidbody>();
         gameObject.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * _projectileSpeed);
-        ProjectileSpawner.GetComponent<Rigidbody>().AddForce(-gameObject.transform.forward * _projectileSpeed);
+        if(parentRB.velocity.y < 0)
+        {
+            //falling
+            parentRB.velocity = new Vector3(parentRB.velocity.x, 0, parentRB.velocity.z);
+            parentRB.AddForce(-gameObject.transform.forward * _projectileSpeed);
+        }
+        else
+        {
+            parentRB.AddForce(-gameObject.transform.forward * _projectileSpeed);
+        }
         AudioManager.Instance.PlaySFX("Gun Shot");
     }
 

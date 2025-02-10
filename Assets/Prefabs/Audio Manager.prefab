@@ -184,6 +184,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9afe53bde088b854091a840181ef2292, type: 3}
   - name: Dash
     clip: {fileID: 8300000, guid: 1b8d11a223e0ab24d90b28767fe9a9ad, type: 3}
+  - name: Reload
+    clip: {fileID: 8300000, guid: 2b264d95f0e28024fb80882c2a9857f6, type: 3}
   musicSource: {fileID: 8636165254216498748}
   sfxSource: {fileID: 8797532009325641042}
 --- !u!1 &7586530457727302451

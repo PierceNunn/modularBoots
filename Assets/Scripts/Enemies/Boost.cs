@@ -24,7 +24,10 @@ public class Boost : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            other.GetComponent<Rigidbody>().AddForce(new Vector3(0, boostForce, 0), ForceMode.Impulse);
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            //cancel falling momentum
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.AddForce(new Vector3(0, boostForce, 0), ForceMode.Impulse);
             other.GetComponent<HealthSystem>().ReceiveHealing(healing);
             pr = other.GetComponent<PlayerResources>();
             pr.RefillAmmo();

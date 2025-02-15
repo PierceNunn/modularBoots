@@ -48,6 +48,7 @@ public class GunModManagerUI : MonoBehaviour
         UpdateAvailableModButtons();
         UpdateCurrentModsDisplay();
         UpdateGroups();
+        print(modsHandler.FireWeapon(true));
     }
 
     private void UpdateCurrentModsDisplay()

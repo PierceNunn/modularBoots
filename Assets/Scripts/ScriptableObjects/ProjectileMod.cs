@@ -22,6 +22,14 @@ public class ProjectileMod : GenericMod
 
     public string DetailedPostModInfoString(Queue<BasicStatModifier> mods)
     {
-        return "null";
+        string output = "";
+        foreach (GameObject g in projectiles)
+        {
+            ProjectileController p = Instantiate(g).GetComponent<ProjectileController>(); //instantiate projectile so mods aren't added directly to prefab
+            p.ApplyModifiers(mods);
+            output = output + "Projectile Speed: " + p.ProjectileSpeed + "\n Projectile Damage: " + p.ProjectileSpeed;
+            DestroyImmediate(p.gameObject); //destroy instantiated projectile so it doesn't actually do anything irl
+        }
+        return output + "\n" + base.DetailedInfoString();
     }
 }

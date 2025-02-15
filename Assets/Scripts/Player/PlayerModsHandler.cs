@@ -52,6 +52,8 @@ public class PlayerModsHandler : MonoBehaviour
                 {
                     ProjectileMod testFireMod = _modLayout[i] as ProjectileMod;
 
+                    testFireMod.DetailedPostModInfoString(statModifierQueue);
+
                     accumulatedCooldown += testFireMod.Cooldown;
                     accumulatedAmmoCost += testFireMod.AmmoCost;
 

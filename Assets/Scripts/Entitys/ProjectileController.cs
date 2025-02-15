@@ -104,6 +104,7 @@ public class ProjectileController : MonoBehaviour
         {
             if(collision.gameObject.CompareTag("Player"))
             {
+                TakeDamage.Instance.PlayHurtVignette();
                 AudioManager.Instance.PlaySFX("Take Damage");
             }
             collision.gameObject.GetComponent<HealthSystem>().TakeDamage(_projectileDamage);

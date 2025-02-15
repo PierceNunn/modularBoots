@@ -43,19 +43,21 @@ public class ProjectileController : MonoBehaviour
         AudioManager.Instance.PlaySFX("Gun Shot");
     }
 
-    public void ApplyModifiers(Queue<BasicStatModifier> mods)
+    public float ApplyModifiers(Queue<BasicStatModifier> mods, float cooldown = -1)
     {
+        float output = cooldown;
         for(int i = 0; i < mods.Count; i++)
         {
-            ApplyModifier(mods.Dequeue());
+            output = ApplyModifier(mods.Dequeue(), output);
         }
+        return output;
     }
 
-    public void ApplyModifier(BasicStatModifier mod)
+    public float ApplyModifier(BasicStatModifier mod, float cooldown = -1)
     {
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         modifierDelegate modDeg = null;
-
+        float output = cooldown;
         switch(mod.Operator)
         {
             case Enums.operators.add:
@@ -84,13 +86,18 @@ public class ProjectileController : MonoBehaviour
                 ProjectileDamage = modDeg(ProjectileDamage, mod.ModifierValue);
                 break;
             case Enums.modifiableStats.cooldown:
-                FindObjectOfType<PlayerModsHandler>().RemainingCooldown = modDeg(FindObjectOfType<PlayerModsHandler>().RemainingCooldown, mod.ModifierValue);
+                if (output == -1)
+                    FindObjectOfType<PlayerModsHandler>().RemainingCooldown = modDeg(FindObjectOfType<PlayerModsHandler>().RemainingCooldown, mod.ModifierValue);
+                else
+                    output = modDeg(output, mod.ModifierValue);
                 break;
             case Enums.modifiableStats.size:
                 gameObject.transform.localScale = new Vector3(modDeg(gameObject.transform.localScale.x, mod.ModifierValue), modDeg(gameObject.transform.localScale.y, mod.ModifierValue), modDeg(gameObject.transform.localScale.z, mod.ModifierValue));
                 rb.mass = modDeg(rb.mass, mod.ModifierValue);
                 break;
         }
+
+        return output;
     }
 
     [System.Obsolete]

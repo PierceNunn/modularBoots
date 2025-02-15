@@ -44,6 +44,7 @@ public class PlayerModsHandler : MonoBehaviour
             Queue<BasicStatModifier> statModifierQueue = new Queue<BasicStatModifier>();
             float accumulatedCooldown = 0f;
             float accumulatedAmmoCost = 0f;
+            float shownCooldown = 0f;
 
             for (int i = 0; i < _modLayout.Length; i++)
             {
@@ -54,10 +55,15 @@ public class PlayerModsHandler : MonoBehaviour
                 {
                     ProjectileMod testFireMod = _modLayout[i] as ProjectileMod;
 
-                    output = output + "\nProjectile " + projectileCount + ":\n" + testFireMod.DetailedPostModInfoString(statModifierQueue);
-
                     accumulatedCooldown += testFireMod.Cooldown;
                     accumulatedAmmoCost += testFireMod.AmmoCost;
+
+                    (string, float) g = testFireMod.DetailedPostModInfoString(statModifierQueue, accumulatedCooldown);
+
+                    output = output + "\nProjectile " + projectileCount + ":\n" + g.Item1;
+                    shownCooldown += g.Item2;
+
+                    
 
                     if(!testFire)
                     {
@@ -100,7 +106,7 @@ public class PlayerModsHandler : MonoBehaviour
                 }
             }
 
-            return output + "\nTotal Cooldown: " + accumulatedCooldown + "\nTotal Ammo Cost: " + accumulatedAmmoCost;
+            return output + "\nTotal Cooldown: " + shownCooldown + "\nTotal Ammo Cost: " + accumulatedAmmoCost;
         }
         else
         {

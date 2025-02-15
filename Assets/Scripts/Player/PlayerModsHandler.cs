@@ -35,8 +35,9 @@ public class PlayerModsHandler : MonoBehaviour
         }
     }
 
-    public void FireWeapon()
+    public string FireWeapon(bool testFire = false)
     {
+        string output = "";
         if (NoPendingCooldown)
         {
             Queue<BasicStatModifier> statModifierQueue = new Queue<BasicStatModifier>();
@@ -52,26 +53,30 @@ public class PlayerModsHandler : MonoBehaviour
                 {
                     ProjectileMod testFireMod = _modLayout[i] as ProjectileMod;
 
-                    testFireMod.DetailedPostModInfoString(statModifierQueue);
+                    output += testFireMod.DetailedPostModInfoString(statModifierQueue);
 
                     accumulatedCooldown += testFireMod.Cooldown;
                     accumulatedAmmoCost += testFireMod.AmmoCost;
 
-                    if(!pr.SpendAmmo(accumulatedAmmoCost))
+                    if(!testFire)
                     {
-                        print("cannot fire, not enough ammo");
-                        return;
+                        if (!pr.SpendAmmo(accumulatedAmmoCost))
+                        {
+                            print("cannot fire, not enough ammo");
+                            return output;
+                        }
+                        accumulatedAmmoCost = 0;
+
+                        StopAllCoroutines();
+                        StartCoroutine(WeaponCooldownTimer(accumulatedCooldown));
+                        accumulatedCooldown = 0;
+
+                        GameObject proj = Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, _projectileSpawnLocation.transform.rotation);
+                        proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
+                        proj.GetComponent<ProjectileController>().ApplyModifiers(statModifierQueue);
+                        proj.GetComponent<ProjectileController>().Fire();
                     }
-                    accumulatedAmmoCost = 0;
-
-                    StopAllCoroutines();
-                    StartCoroutine(WeaponCooldownTimer(accumulatedCooldown));
-                    accumulatedCooldown = 0;
-
-                    GameObject proj = Instantiate(testFireMod.Projectiles[0], _projectileSpawnLocation.transform.position, _projectileSpawnLocation.transform.rotation);
-                    proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
-                    proj.GetComponent<ProjectileController>().ApplyModifiers(statModifierQueue);
-                    proj.GetComponent<ProjectileController>().Fire();
+                    
 
                     for (int j = 0; j < statModifierQueue.Count; j++)
                     {
@@ -93,12 +98,14 @@ public class PlayerModsHandler : MonoBehaviour
                     accumulatedAmmoCost += s.AmmoCost;
                 }
             }
+
+            return output + "\nTotal Cooldown: " + accumulatedCooldown + "\nTotal Ammo Cost: " + accumulatedAmmoCost;
         }
         else
         {
-            print("can't fire, waiting on cooldown");
+            return "can't fire, waiting on cooldown";
         }
-        
+
         
     }
 

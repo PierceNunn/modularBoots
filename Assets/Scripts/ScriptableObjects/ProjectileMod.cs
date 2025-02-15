@@ -30,6 +30,6 @@ public class ProjectileMod : GenericMod
             output = output + "Projectile Speed: " + p.ProjectileSpeed + "\n Projectile Damage: " + p.ProjectileSpeed;
             DestroyImmediate(p.gameObject); //destroy instantiated projectile so it doesn't actually do anything irl
         }
-        return output + "\n" + base.DetailedInfoString();
+        return output + "\n"; //+ base.DetailedInfoString();
     }
 }

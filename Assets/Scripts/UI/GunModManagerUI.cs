@@ -48,19 +48,23 @@ public class GunModManagerUI : MonoBehaviour
         UpdateAvailableModButtons();
         UpdateCurrentModsDisplay();
         UpdateGroups();
+        print(modsHandler.FireWeapon(true));
     }
 
     private void UpdateCurrentModsDisplay()
     {
+        int lastBulletIndex = modsHandler.GetLastBulletModIndex();
         for(int i = 0; i < _currentMods.Length; i++)
         {
             if(modsHandler.ModLayout[i] == null)
             {
                 _currentMods[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(null);
+                _currentMods[i].color = Color.white;
             }
             else
             {
                 _currentMods[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(modsHandler.ModLayout[i]);
+                _currentMods[i].color = i > lastBulletIndex ? Color.red : Color.white;
             }
         }
         modsHandler.UpdateModGroups();
@@ -125,7 +129,13 @@ public class GunModManagerUI : MonoBehaviour
 
     public void AddMod(int arrayPos)
     {
-        modsHandler.AddModToLoadout(_availableMods[arrayPos]);
+        modsHandler.AddModToLoadout(_availableMods[arrayPos], true);
+        UpdateModDisplay();
+    }
+
+    public void RemoveMod(int arrayPos)
+    {
+        modsHandler.RemoveModFromLoadout(arrayPos);
         UpdateModDisplay();
     }
 

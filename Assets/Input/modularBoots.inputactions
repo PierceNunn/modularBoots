@@ -992,7 +992,18 @@
                 {
                     "name": "",
                     "id": "5cf90093-fd2f-495f-a679-0f69801a105f",
-                    "path": "<Keyboard>/numpad5",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6189311d-2103-405d-96c8-d59aadf0cccb",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

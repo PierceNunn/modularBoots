@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modName: Embiggener
   modDescription: makes the projectile larger.
-  _modIcon: {fileID: 21300000, guid: bee8f8f21b71f5e40b15baaf5cb22f51, type: 3}
+  _modIcon: {fileID: 21300000, guid: 341b26a834dbcda4396d205e23798c03, type: 3}
   _ammoCost: 3
   _cooldown: 0
   _statModifiers:

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modName: Small Bullet
   modDescription: A faster but smaller projectile.
-  _modIcon: {fileID: 21300000, guid: 84957a28b4eed724aa9579291f64f6ee, type: 3}
+  _modIcon: {fileID: 21300000, guid: 373d6fda48c9abb4d96c748a8e78a496, type: 3}
   _ammoCost: 1
   _cooldown: 0.1
   projectiles:

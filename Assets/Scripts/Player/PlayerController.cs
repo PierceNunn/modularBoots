@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour, CanDie
 
     [Header("References")]
     [SerializeField] private ParticleSystem StompParticles;
+    [SerializeField] private ParticleSystem DashParticles;
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour, CanDie
 
         if (_dashDuration > _dashCooldown)
             Debug.LogWarning("Dash duration is longer than cooldown. dashing will not be flagged as complete properly.");
+        DashParticles.Stop();
     }
 
     public void FixedUpdate()
@@ -129,6 +131,8 @@ public class PlayerController : MonoBehaviour, CanDie
         if(CurrentDashCooldown == 0f)
         {
             AudioManager.Instance.PlaySFX("Dash");
+            DashParticles.Play();
+            Invoke("StopDashParticles", 1);
             StopStompParticles();
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             if (isMoving)
@@ -142,6 +146,11 @@ public class PlayerController : MonoBehaviour, CanDie
             print("can't dash, still on cooldown");
         }
         
+    }
+
+    void StopDashParticles()
+    {
+        DashParticles.Stop();
     }
 
     public void OnStomp()

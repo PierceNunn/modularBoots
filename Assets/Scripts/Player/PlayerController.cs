@@ -8,8 +8,10 @@ public class PlayerController : MonoBehaviour, CanDie
 {
     [Header ("Movement Variables")]
     [SerializeField] private float _movementSpeed;
+    [SerializeField] private float _airMovementSpeed;
     [SerializeField] private float _jumpSpeed;
     [SerializeField] private float _dashSpeed;
+    [SerializeField] private float _maxGroundSpeed;
     [SerializeField] private float _stompDownwardForce;
     [SerializeField] private float _dashCooldown;
     [SerializeField] private float _dashDuration;
@@ -51,7 +53,7 @@ public class PlayerController : MonoBehaviour, CanDie
         UpdateCameraRelevantVectors();
         //Debug.Log(movementVector);
 
-        rb.AddForce(cameraRelevantMovementVector * _movementSpeed); //make player move
+        
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(cameraRelevantRotateVector), 0.5f);
         if (IsGrounded() && modsHandler.NoPendingCooldown && pr.CurrentAmmo != pr.MaxAmmo)
             pr.RefillAmmo();
@@ -61,9 +63,16 @@ public class PlayerController : MonoBehaviour, CanDie
         rb.useGravity = !IsDashing;
 
         //Not sure where else I can turn off the stomp particles so it's going in Fixed Update
-        if (StompParticles.isPlaying && IsGrounded())
+        if (IsGrounded())
         {
-            StopStompParticles();
+            rb.AddForce(cameraRelevantMovementVector * _movementSpeed); //make player move
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, _maxGroundSpeed);
+            if(StompParticles.isPlaying)
+                StopStompParticles();
+        }
+        else
+        {
+            rb.AddForce(cameraRelevantMovementVector * _airMovementSpeed);
         }
     }
 

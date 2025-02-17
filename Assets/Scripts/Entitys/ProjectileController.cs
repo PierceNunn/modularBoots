@@ -12,6 +12,8 @@ public class ProjectileController : MonoBehaviour
 
     private GameObject _projectileSpawner;
 
+    private Rigidbody parentRB;
+
     public GameObject ProjectileSpawner { get => _projectileSpawner; set => _projectileSpawner = value; }
     public Enums.projectileBehaviors ProjectileBehavior { get => _projectileBehavior; set => _projectileBehavior = value; }
     public float ProjectileDamage { get => _projectileDamage; set => _projectileDamage = value; }
@@ -26,24 +28,36 @@ public class ProjectileController : MonoBehaviour
 
     public void Fire()
     {
+        parentRB = ProjectileSpawner.GetComponent<Rigidbody>();
         gameObject.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * _projectileSpeed);
-        ProjectileSpawner.GetComponent<Rigidbody>().AddForce(-gameObject.transform.forward * _projectileSpeed);
+        if(parentRB.velocity.y < 0)
+        {
+            //falling
+            parentRB.velocity = new Vector3(parentRB.velocity.x, 0, parentRB.velocity.z);
+            parentRB.AddForce(-gameObject.transform.forward * _projectileSpeed);
+        }
+        else
+        {
+            parentRB.AddForce(-gameObject.transform.forward * _projectileSpeed);
+        }
         AudioManager.Instance.PlaySFX("Gun Shot");
     }
 
-    public void ApplyModifiers(Queue<BasicStatModifier> mods)
+    public float ApplyModifiers(Queue<BasicStatModifier> mods, float cooldown = -1)
     {
+        float output = cooldown;
         for(int i = 0; i < mods.Count; i++)
         {
-            ApplyModifier(mods.Dequeue());
+            output = ApplyModifier(mods.Dequeue(), output);
         }
+        return output;
     }
 
-    public void ApplyModifier(BasicStatModifier mod)
+    public float ApplyModifier(BasicStatModifier mod, float cooldown = -1)
     {
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         modifierDelegate modDeg = null;
-
+        float output = cooldown;
         switch(mod.Operator)
         {
             case Enums.operators.add:
@@ -72,13 +86,18 @@ public class ProjectileController : MonoBehaviour
                 ProjectileDamage = modDeg(ProjectileDamage, mod.ModifierValue);
                 break;
             case Enums.modifiableStats.cooldown:
-                FindObjectOfType<PlayerModsHandler>().RemainingCooldown = modDeg(FindObjectOfType<PlayerModsHandler>().RemainingCooldown, mod.ModifierValue);
+                if (output == -1)
+                    FindObjectOfType<PlayerModsHandler>().RemainingCooldown = modDeg(FindObjectOfType<PlayerModsHandler>().RemainingCooldown, mod.ModifierValue);
+                else
+                    output = modDeg(output, mod.ModifierValue);
                 break;
             case Enums.modifiableStats.size:
                 gameObject.transform.localScale = new Vector3(modDeg(gameObject.transform.localScale.x, mod.ModifierValue), modDeg(gameObject.transform.localScale.y, mod.ModifierValue), modDeg(gameObject.transform.localScale.z, mod.ModifierValue));
                 rb.mass = modDeg(rb.mass, mod.ModifierValue);
                 break;
         }
+
+        return output;
     }
 
     [System.Obsolete]
@@ -90,6 +109,11 @@ public class ProjectileController : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
+            if(collision.gameObject.CompareTag("Player"))
+            {
+                TakeDamage.Instance.PlayHurtVignette();
+                AudioManager.Instance.PlaySFX("Take Damage");
+            }
             collision.gameObject.GetComponent<HealthSystem>().TakeDamage(_projectileDamage);
         }
         

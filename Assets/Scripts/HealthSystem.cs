@@ -17,7 +17,11 @@ public class HealthSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CurrentHealth = MaxHealth;
+        if(GetComponent<EnemyBehavior>() != null)
+        {
+            maxHealth = GetComponent<EnemyBehavior>().EnemyStats.health;
+        }
+        currentHealth = maxHealth;
         entityController = GetComponent<CanDie>();
     }
 

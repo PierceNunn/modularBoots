@@ -34,12 +34,14 @@ public class GunModManagerUI : MonoBehaviour
             FindObjectOfType<PlayerInput>().actions.FindActionMap("UI").Disable();
             FindObjectOfType<PlayerInput>().actions.FindActionMap("Player").Enable();
             _content.SetActive(false);
+            Time.timeScale = 1f;
         }
         else
         {
             FindObjectOfType<PlayerInput>().actions.FindActionMap("UI").Enable();
             FindObjectOfType<PlayerInput>().actions.FindActionMap("Player").Disable();
             _content.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 

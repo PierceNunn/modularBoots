@@ -26,8 +26,11 @@ public class StationaryEnemy : EnemyBehavior
     {
         //Debug.Log("shot at target");
         GameObject proj = Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
-        proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
-        proj.GetComponent<ProjectileController>().Fire();
+        //proj.GetComponent<ProjectileController>().ProjectileSpawner = gameObject;
+        //proj.transform.LookAt(target);
+        Debug.Log(proj.transform.forward);
+        proj.GetComponent<Rigidbody>().velocity = (proj.transform.forward) * 5f;
+        //proj.GetComponent<ProjectileController>().Fire();
 
     }
 
@@ -43,7 +46,7 @@ public class StationaryEnemy : EnemyBehavior
                 ShootAtTarget();
             }
             
-            yield return new WaitForSeconds(enemyStats.attackInterval);
+            yield return new WaitForSeconds(EnemyStats.attackInterval);
         }
     
     }

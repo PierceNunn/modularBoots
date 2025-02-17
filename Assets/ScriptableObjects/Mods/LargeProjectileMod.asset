@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7719d9592de531b499a92baac7f8a3f8, type: 3}
+  m_Name: LargeProjectileMod
+  m_EditorClassIdentifier: 
+  modName: Large Projectile
+  modDescription: A very large, heavy, high-damage projectile.
+  _modIcon: {fileID: 21300000, guid: 84957a28b4eed724aa9579291f64f6ee, type: 3}
+  _ammoCost: 25
+  _cooldown: 2.5
+  projectiles:
+  - {fileID: 4980546015630699382, guid: 4f0882cbe1de1ab44a3ff3cb11030d3b, type: 3}

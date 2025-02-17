@@ -36,6 +36,7 @@ public class HealthSystem : MonoBehaviour
             AudioManager.Instance.PlaySFX("Enemy Death");
             entityController.Die();
         }
+        //Debug.Log("Health: " + CurrentHealth + " Max Health: " + MaxHealth);
     }
 
     public void ReceiveHealing(float healing)

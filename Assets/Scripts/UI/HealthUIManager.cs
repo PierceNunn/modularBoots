@@ -14,7 +14,7 @@ public class HealthUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hs = FindObjectOfType<HealthSystem>();
+        hs = FindObjectOfType<PlayerController>().gameObject.GetComponent<HealthSystem>();
         healthBarHeight = _healthBarMask.rect.height;
     }
 

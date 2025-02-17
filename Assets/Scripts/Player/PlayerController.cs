@@ -134,6 +134,7 @@ public class PlayerController : MonoBehaviour, CanDie
             DashParticles.Play();
             Invoke("StopDashParticles", 1);
             StopStompParticles();
+            rb.velocity = Vector3.zero;
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             if (isMoving)
                 rb.AddForce(cameraRelevantMovementVector * _dashSpeed, ForceMode.Impulse);

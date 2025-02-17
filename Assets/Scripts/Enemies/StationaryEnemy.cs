@@ -46,7 +46,7 @@ public class StationaryEnemy : EnemyBehavior
                 ShootAtTarget();
             }
             
-            yield return new WaitForSeconds(enemyStats.attackInterval);
+            yield return new WaitForSeconds(EnemyStats.attackInterval);
         }
     
     }

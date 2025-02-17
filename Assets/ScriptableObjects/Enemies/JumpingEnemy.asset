@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14c27f2b0ddf1b54d8a5d45d9909a045, type: 3}
-  m_Name: StationaryEnemy
+  m_Name: JumpingEnemy
   m_EditorClassIdentifier: 
-  enemyName: StationaryEnemy
-  health: 5
-  moveSpeed: 0
+  enemyName: JumpingEnemy
+  health: 10
+  moveSpeed: 5
   aggroDistance: 20
-  attackInterval: 1
+  attackInterval: 3

@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectileBehavior: 0
   _projectileDamage: 1
-  _projectileSpeed: 10
+  _projectileSpeed: 15
   _destroyedOnCollision: 0
   _impactParticles: {fileID: 8212160321374351005, guid: 820f8d124a5b7c34e99fad543d6c00c5, type: 3}
 --- !u!54 &6460965475718814442

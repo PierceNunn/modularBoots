@@ -9,7 +9,9 @@ public class EnemyBehavior : MonoBehaviour, CanDie
     [SerializeField] private GameObject boost;
 
     protected bool isAggro;
-    
+
+    public Enemy EnemyStats { get => enemyStats; protected set => enemyStats = value; }
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -35,7 +37,7 @@ public class EnemyBehavior : MonoBehaviour, CanDie
     {
         while (true)
         {
-            if(Vector3.Distance(this.transform.position, target.position) < enemyStats.aggroDistance)
+            if(Vector3.Distance(this.transform.position, target.position) < EnemyStats.aggroDistance)
             {
                 if (isAggro == false)
                 {
@@ -54,6 +56,6 @@ public class EnemyBehavior : MonoBehaviour, CanDie
 
     public virtual IEnumerator Attack()
     {
-        yield return new WaitForSeconds(enemyStats.attackInterval);
+        yield return new WaitForSeconds(EnemyStats.attackInterval);
     }
 }

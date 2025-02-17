@@ -25,6 +25,7 @@ public class Boost : MonoBehaviour
         if(other.tag == "Player")
         {
             Rigidbody rb = other.GetComponent<Rigidbody>();
+            other.GetComponent<PlayerController>().StopStompParticles();
             //cancel falling momentum
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(new Vector3(0, boostForce, 0), ForceMode.Impulse);

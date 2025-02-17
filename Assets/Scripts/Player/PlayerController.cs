@@ -6,12 +6,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, CanDie
 {
+    [Header ("Movement Variables")]
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _jumpSpeed;
     [SerializeField] private float _dashSpeed;
     [SerializeField] private float _stompDownwardForce;
     [SerializeField] private float _dashCooldown;
     [SerializeField] private float _dashDuration;
+
+    [Header("References")]
+    [SerializeField] private ParticleSystem StompParticles;
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
@@ -55,8 +59,23 @@ public class PlayerController : MonoBehaviour, CanDie
             modsHandler.FireWeapon();
 
         rb.useGravity = !IsDashing;
+
+        //Not sure where else I can turn off the stomp particles so it's going in Fixed Update
+        if (StompParticles.isPlaying && IsGrounded())
+        {
+            StopStompParticles();
+        }
     }
 
+    public void StopStompParticles()
+    {
+        StompParticles.Stop();
+    }
+
+    public void PlayStompParticles()
+    {
+        StompParticles.Play();
+    }
     void OnPoint(InputValue pointValue)
     {
         pointVector = pointValue.Get<Vector2>();
@@ -93,6 +112,7 @@ public class PlayerController : MonoBehaviour, CanDie
     {
         IsDashing = false;
         isFiring = fireValue.isPressed;
+        StopStompParticles();
     }
 
     public void OnDash()
@@ -100,6 +120,7 @@ public class PlayerController : MonoBehaviour, CanDie
         if(CurrentDashCooldown == 0f)
         {
             AudioManager.Instance.PlaySFX("Dash");
+            StopStompParticles();
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             if (isMoving)
                 rb.AddForce(cameraRelevantMovementVector * _dashSpeed, ForceMode.Impulse);
@@ -119,7 +140,8 @@ public class PlayerController : MonoBehaviour, CanDie
         if(!IsGrounded())
         {
             rb.velocity = Vector3.zero;
-            rb.AddForce(Vector3.down * _stompDownwardForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.down * _stompDownwardForce, ForceMode.Impulse);          
+            PlayStompParticles();
         }
     }
 
@@ -133,7 +155,6 @@ public class PlayerController : MonoBehaviour, CanDie
         bool output = Physics.Raycast(transform.position, -Vector3.up, cr.bounds.extents.y+ 0.1f);
         if(output)
             Debug.DrawRay(transform.position, Vector3.up, Color.green, 10f);
-
         return output;
     }
 

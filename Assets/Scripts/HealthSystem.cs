@@ -9,7 +9,10 @@ public class HealthSystem : MonoBehaviour
     
     private float currentHealth;
     private CanDie entityController;
-    
+
+    public float MaxHealth { get => maxHealth; set => maxHealth = value; }
+    public float CurrentHealth { get => currentHealth; set => currentHealth = value; }
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,20 +34,21 @@ public class HealthSystem : MonoBehaviour
     public void TakeDamage(float damage)
     {
         Debug.Log(name + " took " + damage + " damage.");
-        currentHealth -= damage;
-        if (currentHealth <= 0) 
+        CurrentHealth -= damage;
+        if (CurrentHealth <= 0) 
         {
             AudioManager.Instance.PlaySFX("Enemy Death");
             entityController.Die();
         }
+        //Debug.Log("Health: " + CurrentHealth + " Max Health: " + MaxHealth);
     }
 
     public void ReceiveHealing(float healing)
     {
-        currentHealth += healing;
-        if (currentHealth > maxHealth)
+        CurrentHealth += healing;
+        if (CurrentHealth > MaxHealth)
         {
-            currentHealth = maxHealth;
+            CurrentHealth = MaxHealth;
         }
     }
 

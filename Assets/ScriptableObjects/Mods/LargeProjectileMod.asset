@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modName: Large Projectile
   modDescription: A very large, heavy, high-damage projectile.
-  _modIcon: {fileID: 21300000, guid: 84957a28b4eed724aa9579291f64f6ee, type: 3}
+  _modIcon: {fileID: 21300000, guid: 987b2ddf6d9f3c84687ee0d79d848cfc, type: 3}
   _ammoCost: 25
   _cooldown: 2.5
   projectiles:

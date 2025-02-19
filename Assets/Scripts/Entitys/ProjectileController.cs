@@ -40,7 +40,6 @@ public class ProjectileController : MonoBehaviour
         {
             parentRB.AddForce(-gameObject.transform.forward * _projectileSpeed);
         }
-        AudioManager.Instance.PlaySFX("Gun Shot");
     }
 
     public float ApplyModifiers(Queue<BasicStatModifier> mods, float cooldown = -1)

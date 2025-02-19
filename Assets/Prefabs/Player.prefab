@@ -140,10 +140,10 @@ MonoBehaviour:
   _movementSpeed: 25
   _airMovementSpeed: 5
   _jumpSpeed: 100
-  _dashSpeed: 4
+  _dashSpeed: 10
   _maxGroundSpeed: 7
-  _stompDownwardForce: 6
-  _dashCooldown: 5
+  _stompDownwardForce: 11
+  _dashCooldown: 3
   _dashDuration: 0.5
   StompParticles: {fileID: 5669312860837114253}
   DashParticles: {fileID: 737638005147488134}

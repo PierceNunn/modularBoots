@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour, CanDie
     private Collider cr;
     private PlayerModsHandler modsHandler;
     private PlayerResources pr;
+    private PauseMenu pm;
 
     public float CurrentDashCooldown { get => currentDashCooldown; set => currentDashCooldown = value; }
     public bool IsDashing { get => isDashing; set => isDashing = value; }
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour, CanDie
         cr = gameObject.GetComponent<Collider>();
         modsHandler = gameObject.GetComponent<PlayerModsHandler>();
         pr = gameObject.GetComponent<PlayerResources>();
+        pm = FindAnyObjectByType<PauseMenu>();
 
         if (_dashDuration > _dashCooldown)
             Debug.LogWarning("Dash duration is longer than cooldown. dashing will not be flagged as complete properly.");
@@ -166,9 +168,16 @@ public class PlayerController : MonoBehaviour, CanDie
 
     public void OnMenu()
     {
-        FindObjectOfType<GunModManagerUI>().ToggleModMenu();
+        if(!pm.paused)
+        {
+            FindObjectOfType<GunModManagerUI>().ToggleModMenu();
+        }
     }
 
+    public void OnPause()
+    {
+        pm.OnPause();
+    }
     public bool IsGrounded()
     {
         bool output = Physics.Raycast(transform.position, -Vector3.up, cr.bounds.extents.y+ 0.1f);

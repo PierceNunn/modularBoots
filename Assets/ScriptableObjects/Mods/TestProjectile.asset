@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modName: bullet
   modDescription: a standard projectile.
-  _modIcon: {fileID: 21300000, guid: bc161f12565c9634985bd5b5086dd940, type: 3}
+  _modIcon: {fileID: 21300000, guid: 1a9ac6cda4854f8409a57898bc07b6d4, type: 3}
   _ammoCost: 5
   _cooldown: 0.5
   projectiles:

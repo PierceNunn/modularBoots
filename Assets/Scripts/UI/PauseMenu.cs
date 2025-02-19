@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject PauseScreen;
     [SerializeField] private GameObject ControlsScreen;
+    public bool paused;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +21,12 @@ public class PauseMenu : MonoBehaviour
         {
             PauseScreen.SetActive(true);
             Time.timeScale = 0;
+            paused = true;
         }
         else
         {
             onResume();
+            paused = false;
         }
     }
     public void onResume()

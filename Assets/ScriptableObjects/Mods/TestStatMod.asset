@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modName: bullet accelerator
   modDescription: multiplies projectile speed by 1.5
-  _modIcon: {fileID: 21300000, guid: bfcf65d3183b2004b878170ea40ef671, type: 3}
+  _modIcon: {fileID: 21300000, guid: 20259910aea62c240ad65395e5b6cee0, type: 3}
   _ammoCost: 5
   _cooldown: 0
   _statModifiers:

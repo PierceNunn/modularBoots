@@ -50,7 +50,7 @@ public class GunModManagerUI : MonoBehaviour
         UpdateAvailableModButtons();
         UpdateCurrentModsDisplay();
         UpdateGroups();
-        print(modsHandler.FireWeapon(true));
+        FindObjectOfType<ExtraInfoWindow>().UpdateInfoDisplay(modsHandler.FireWeapon(true));
     }
 
     private void UpdateCurrentModsDisplay()
@@ -117,7 +117,9 @@ public class GunModManagerUI : MonoBehaviour
                 groupImages.Add(Instantiate(_groupingImages[0]).GetComponent<RectTransform>());
                 groupImages[currentGroup].transform.SetParent(_content.transform, false);
                 groupImages[currentGroup].transform.SetAsFirstSibling();
-                groupImages[currentGroup].anchoredPosition = _currentMods[i].GetComponent<RectTransform>().anchoredPosition - new Vector2(_currentMods[i].GetComponent<RectTransform>().sizeDelta.x / 2, 0f);
+                //groupImages[currentGroup].pivot = new Vector2(0.5f, 0.5f);
+                groupImages[currentGroup].anchoredPosition = _currentMods[i].GetComponent<RectTransform>().anchoredPosition - new Vector2((_currentMods[i].GetComponent<RectTransform>().sizeDelta.x / 2), 0f);
+                //groupImages[currentGroup].pivot = new Vector2(0, 0.5f);
                 groupImages[currentGroup].sizeDelta = new Vector2(_groupWidthPerMod, _groupHeight);
                 groupImages[currentGroup].localScale = _currentMods[i].GetComponent<RectTransform>().localScale;
 

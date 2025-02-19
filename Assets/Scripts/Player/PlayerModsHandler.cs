@@ -105,7 +105,8 @@ public class PlayerModsHandler : MonoBehaviour
                     accumulatedAmmoCost += s.AmmoCost;
                 }
             }
-
+            if (!testFire)
+                AudioManager.Instance.PlaySFX("Gun Shot");
             return output + "\nTotal Cooldown: " + shownCooldown + "\nTotal Ammo Cost: " + accumulatedAmmoCost;
         }
         else

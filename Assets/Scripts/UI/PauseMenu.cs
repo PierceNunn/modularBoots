@@ -11,17 +11,25 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         PauseScreen.SetActive(false);
-        //ControlsScreen.SetActive(false);
+        ControlsScreen.SetActive(false);
     }
 
     public void OnPause()
     {
-        PauseScreen.SetActive(true);
-        Time.timeScale = 0;
+        if(Time.timeScale > 0)
+        {
+            PauseScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            onResume();
+        }
     }
     public void onResume()
     {
         PauseScreen.SetActive(false);
+        ControlsScreen.SetActive(false);
         Time.timeScale = 1;
     }
 

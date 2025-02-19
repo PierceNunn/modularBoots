@@ -29,7 +29,8 @@ public class ModDisplayController : MonoBehaviour
 
     public void LateUpdate()
     {
-        Vector2 mousePos = Mouse.current.position.ReadValue();
+        //we're not doing hover stats anymore
+       /* Vector2 mousePos = Mouse.current.position.ReadValue();
         Vector2 localMousePosition = rectTransform.InverseTransformPoint(mousePos);
         if (rectTransform.rect.Contains(localMousePosition) && _modToDisplay != null)
         {
@@ -43,7 +44,7 @@ public class ModDisplayController : MonoBehaviour
                 Debug.LogWarning("ExtraInfoWindow either doesn't exist or is missing a RectTransform");
             }
             
-        }
+        }*/
     }
     public void UpdateDisplayInfo()
     {

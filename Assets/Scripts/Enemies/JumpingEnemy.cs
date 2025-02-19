@@ -6,6 +6,7 @@ public class JumpingEnemy : EnemyBehavior
 {
     [SerializeField] private float attackDistance;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float attackDamage;
 
     private Rigidbody rb;
     
@@ -36,6 +37,14 @@ public class JumpingEnemy : EnemyBehavior
         jumpDirection.y += 5;
         jumpDirection.Normalize();
         rb.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<HealthSystem>().TakeDamage(attackDamage);
+        }
     }
 
     public override IEnumerator Attack()

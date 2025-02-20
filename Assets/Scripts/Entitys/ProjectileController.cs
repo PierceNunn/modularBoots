@@ -93,7 +93,11 @@ public class ProjectileController : MonoBehaviour
                 break;
             case Enums.modifiableStats.size:
                 gameObject.transform.localScale = new Vector3(modDeg(gameObject.transform.localScale.x, mod.ModifierValue), modDeg(gameObject.transform.localScale.y, mod.ModifierValue), modDeg(gameObject.transform.localScale.z, mod.ModifierValue));
-                rb.mass = modDeg(rb.mass, mod.ModifierValue);
+                //testing this out for bouncy bullet
+                if(rb.angularDrag != 0)//identifying bouncy bullet based off it's rb
+                {
+                    rb.mass = modDeg(rb.mass, mod.ModifierValue);
+                }
                 break;
         }
 

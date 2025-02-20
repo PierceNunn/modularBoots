@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2673384260508988118}
   - component: {fileID: 3299812910995028104}
   - component: {fileID: 7660432945530898480}
-  - component: {fileID: 1693274038689333979}
   - component: {fileID: 6899204715884754413}
   - component: {fileID: 6460965475718814442}
   - component: {fileID: 4405059206342653798}
+  - component: {fileID: 8580814412375995135}
   m_Layer: 0
   m_Name: BouncyProjectile
   m_TagString: Projectile
@@ -87,27 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1693274038689333979
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4980546015630699382}
-  m_Material: {fileID: 13400000, guid: dad5511b7b8af094f9a6d679de814c27, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6899204715884754413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,4 +143,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be095dc1767d2742aab48cb38054ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalLifetime: 5
+  _totalLifetime: 10
+--- !u!65 &8580814412375995135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4980546015630699382}
+  m_Material: {fileID: 13400000, guid: dad5511b7b8af094f9a6d679de814c27, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

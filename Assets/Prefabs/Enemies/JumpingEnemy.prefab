@@ -151,8 +151,9 @@ MonoBehaviour:
   enemyStats: {fileID: 11400000, guid: 8762a6d6ba0f7874e9e55c619463596f, type: 2}
   target: {fileID: 0}
   boost: {fileID: 8471973562364769460, guid: 32cf84c6be451974e985427e01d3b21a, type: 3}
-  attackDistance: 0
-  jumpForce: 0
+  attackDistance: 3
+  jumpForce: 2
+  attackDamage: 1
 --- !u!114 &-6364729539695490440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78c6b971e86b144e97ef057e40f74ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 2
 --- !u!1001 &3083093746580924829
 PrefabInstance:
   m_ObjectHideFlags: 0

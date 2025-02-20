@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modName: Bouncing Bullet
   modDescription: A standard bullet, but bouncier and longer lasting.
-  _modIcon: {fileID: 21300000, guid: 84957a28b4eed724aa9579291f64f6ee, type: 3}
+  _modIcon: {fileID: 21300000, guid: a1bba7768b0a3614484db0ebe68be352, type: 3}
   _ammoCost: 6
   _cooldown: 0.5
   projectiles:

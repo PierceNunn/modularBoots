@@ -61,7 +61,7 @@ public class GunModManagerUI : MonoBehaviour
             if(modsHandler.ModLayout[i] == null)
             {
                 _currentMods[i].gameObject.GetComponent<ModDisplayController>().UpdateDisplayInfo(null);
-                _currentMods[i].color = Color.white;
+                _currentMods[i].color = Color.clear;
             }
             else
             {

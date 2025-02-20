@@ -15,5 +15,5 @@ MonoBehaviour:
   enemyName: StationaryEnemy
   health: 5
   moveSpeed: 0
-  aggroDistance: 20
-  attackInterval: 1
+  aggroDistance: 40
+  attackInterval: 1.5

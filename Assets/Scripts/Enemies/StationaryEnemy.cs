@@ -31,7 +31,7 @@ public class StationaryEnemy : EnemyBehavior
         Debug.Log(proj.transform.forward);
         proj.GetComponent<Rigidbody>().velocity = (proj.transform.forward) * 5f;
         //proj.GetComponent<ProjectileController>().Fire();
-
+        AudioManager.Instance.PlaySFX("Gun Shot");
     }
 
     public override IEnumerator Attack()

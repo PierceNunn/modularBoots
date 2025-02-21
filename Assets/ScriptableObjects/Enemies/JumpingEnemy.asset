@@ -15,5 +15,5 @@ MonoBehaviour:
   enemyName: JumpingEnemy
   health: 10
   moveSpeed: 5
-  aggroDistance: 20
+  aggroDistance: 100.6
   attackInterval: 3

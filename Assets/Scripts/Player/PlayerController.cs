@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour, CanDie
     [Header("References")]
     [SerializeField] private ParticleSystem StompParticles;
     [SerializeField] private ParticleSystem DashParticles;
+    [SerializeField] private GameObject PlayerModel;
+    [SerializeField] private Transform CameraTransform;
 
     private Vector3 movementVector;
     private Vector3 rotateVector;
@@ -55,8 +57,12 @@ public class PlayerController : MonoBehaviour, CanDie
         UpdateCameraRelevantVectors();
         //Debug.Log(movementVector);
 
+        if(isMoving && IsGrounded())
+            transform.forward = Vector3.Slerp(transform.forward, cameraRelevantMovementVector, Time.deltaTime * 10);
         
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(cameraRelevantRotateVector), 0.5f);
+        if(!IsGrounded())
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotateVector), 0.5f);
+
         if (IsGrounded() && modsHandler.NoPendingCooldown && pr.CurrentAmmo != pr.MaxAmmo)
             pr.RefillAmmo();
         if(isFiring)
@@ -104,9 +110,15 @@ public class PlayerController : MonoBehaviour, CanDie
     void OnRotate(InputValue rotateValue)
     {
         if (!IsGrounded())
-            rotateVector = new Vector3(rotateValue.Get<Vector2>().y * 45, 0, -rotateValue.Get<Vector2>().x * 45);
+        {
+            rotateVector = new Vector3(rotateValue.Get<Vector2>().y * 45, transform.rotation.eulerAngles.y,
+                -rotateValue.Get<Vector2>().x * 45);
+            Debug.Log(rotateVector);
+        }
         else
-            rotateVector = new Vector3(0, 0, 0);
+            rotateVector = transform.rotation.eulerAngles; //new Vector3(0, 0, 0);
+
+        //Debug.Log(rotateVector);
     }
 
     void OnJump(InputValue rotateValue)
@@ -188,8 +200,8 @@ public class PlayerController : MonoBehaviour, CanDie
 
         Vector3 newMovementZ = movementVector.z * cameraForward;
         Vector3 newMovementX = movementVector.x * cameraRight;
-        Vector3 newRotationZ = rotateVector.z * cameraForward;
-        Vector3 newRotationX = rotateVector.x * cameraRight;
+        Vector3 newRotationZ = rotateVector.z * transform.forward.normalized;
+        Vector3 newRotationX = rotateVector.x * transform.right.normalized;
 
         cameraRelevantMovementVector = newMovementX + newMovementZ;
         cameraRelevantRotateVector = newRotationX + newRotationZ;

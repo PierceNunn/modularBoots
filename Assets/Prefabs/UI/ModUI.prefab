@@ -808,7 +808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: -363}
+  m_AnchoredPosition: {x: 34, y: -346}
   m_SizeDelta: {x: 584.94, y: 145.798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6343595467293715290
@@ -2226,7 +2226,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "   +50  Force\n   +50  Power"
+  m_text: '   +80  Force
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2415,8 +2417,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7293303956880366205}
   m_HandleRect: {fileID: 511415307896736558}
   m_Direction: 2
-  m_Value: 0.9999999
-  m_Size: 0.46114862
+  m_Value: 0.99999976
+  m_Size: 0.46114865
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2455,7 +2457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: -363}
+  m_AnchoredPosition: {x: 34, y: -346}
   m_SizeDelta: {x: 584.94, y: 145.798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5751108355082546525
@@ -3341,7 +3343,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "   +50  Force\n   +50  Power"
+  m_text: '   Cooldown / 2'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3578,7 +3580,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34.000042, y: -242}
+  m_AnchoredPosition: {x: 34.000042, y: -210.576}
   m_SizeDelta: {x: 584.94, y: 145.798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4159232744631512805
@@ -3609,7 +3611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '  *1.5  Speed'
+  m_text: '  * 1.25  Force'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4327,7 +4329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: -363}
+  m_AnchoredPosition: {x: 34, y: -346}
   m_SizeDelta: {x: 584.94, y: 145.798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5429091868013435034
@@ -4358,7 +4360,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '   +25  Ammo Cost
+  m_text: '     +6  Ammo Cost
 
     +2.5s  Cooldown'
   m_isRightToLeft: 0
@@ -4706,7 +4708,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: " +250  Force\n +250  Power"
+  m_text: ' +250  Force
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5412,7 +5416,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "   +50  Force\n   +50  Power"
+  m_text: '   +15  Force
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5727,7 +5733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: -363}
+  m_AnchoredPosition: {x: 34, y: -346}
   m_SizeDelta: {x: 584.94, y: 145.798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1969206889142346590
@@ -5758,9 +5764,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '   +25  Ammo Cost
-
-    +2.5s  Cooldown'
+  m_text: '   +0.5  Ammo Cost'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6015,7 +6019,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: -363}
+  m_AnchoredPosition: {x: 34, y: -346}
   m_SizeDelta: {x: 584.94, y: 145.798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7098966839238091493
@@ -6046,9 +6050,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '   +25  Ammo Cost
+  m_text: '     +1  Ammo Cost
 
-    +2.5s  Cooldown'
+    +0.1s  Cooldown'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6240,7 +6244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: -363}
+  m_AnchoredPosition: {x: 34, y: -346}
   m_SizeDelta: {x: 584.94, y: 145.798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5548356381784903443
@@ -6271,7 +6275,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '   +25  Ammo Cost
+  m_text: '   +50  Ammo Cost
 
     +2.5s  Cooldown'
   m_isRightToLeft: 0
@@ -6950,7 +6954,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: -363}
+  m_AnchoredPosition: {x: 34, y: -346}
   m_SizeDelta: {x: 584.94, y: 145.798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5161004872405861436
@@ -6981,7 +6985,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '    +5  Ammo Cost'
+  m_text: '    +6  Ammo Cost'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7743,7 +7747,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "   +50  Force\n   +50  Power"
+  m_text: '   +60  Force'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

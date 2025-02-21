@@ -4,10 +4,12 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject ControlsBackground;
+    [SerializeField] private GameObject CreditsBackground;
     // Start is called before the first frame update
     void Start()
     {
         ControlsBackground.SetActive(false);
+        CreditsBackground.SetActive(false);
     }
 
     public void PlayGame()
@@ -23,9 +25,15 @@ public class MainMenu : MonoBehaviour
     public void BackToMainmenu()
     {
         ControlsBackground.SetActive(false);
+        CreditsBackground.SetActive(false);
     }
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void Credits()
+    {
+        CreditsBackground.SetActive(true);
     }
 }

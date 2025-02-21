@@ -38,7 +38,7 @@ public class PlayerModsHandler : MonoBehaviour
     public string FireWeapon(bool testFire = false)
     {
         string output = "";
-        int projectileCount = 0;
+        int projectileCount = 1;
         if (NoPendingCooldown)
         {
             Queue<BasicStatModifier> statModifierQueue = new Queue<BasicStatModifier>();
@@ -61,6 +61,7 @@ public class PlayerModsHandler : MonoBehaviour
                     (string, float) g = testFireMod.DetailedPostModInfoString(statModifierQueue, accumulatedCooldown);
 
                     output = output + "\nProjectile " + projectileCount + ":\n" + g.Item1;
+                    projectileCount++;
                     shownCooldown += g.Item2;
 
                     

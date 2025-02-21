@@ -462,6 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseScreen: {fileID: 732484633080207611}
   ControlsScreen: {fileID: 6426972646547324319}
+  paused: 0
 --- !u!1 &4216360975762616151
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,7 +663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 97b17f543cdcefe4c9d6c825af10c3fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7cb0e0e378bec3d4f8eeeb1605097362, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
